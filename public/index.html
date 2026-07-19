@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FounderFit — find your model, meet your investors</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Founder<span>Fit</span></h1>
+      <p class="tagline">Find the right business model. Meet the right investors. AI does the homework.</p>
+      <nav>
+        <button class="tab active" data-tab="founder">For Founders</button>
+        <button class="tab" data-tab="startups">Startups</button>
+        <button class="tab" data-tab="investors">For Investors</button>
+        <button class="tab" data-tab="deals">Deal Pipeline</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- ============ Founder quiz ============ -->
+    <section id="tab-founder" class="panel active">
+      <h2>Which business model fits you?</h2>
+      <p class="muted">Answer five questions and get an AI-powered recommendation with concrete first steps.</p>
+      <form id="quiz-form" class="card">
+        <label>What are you offering?
+          <select name="offering" required>
+            <option value="">Choose…</option>
+            <option value="software">Software / an app</option>
+            <option value="physical">A physical product</option>
+            <option value="connecting-people">Connecting people (buyers &amp; sellers, tutors &amp; students…)</option>
+            <option value="expertise">My expertise / a service</option>
+            <option value="content">Content or media</option>
+          </select>
+        </label>
+        <label>Who are your customers?
+          <select name="customers" required>
+            <option value="">Choose…</option>
+            <option value="businesses">Businesses</option>
+            <option value="consumers">Consumers</option>
+          </select>
+        </label>
+        <label>How would you prefer to earn revenue?
+          <select name="revenuePreference" required>
+            <option value="">Choose…</option>
+            <option value="recurring">Recurring (monthly payments)</option>
+            <option value="per-transaction">Per transaction / per sale</option>
+            <option value="one-time">One-time purchases</option>
+          </select>
+        </label>
+        <label>How much starting capital do you have access to?
+          <select name="capital" required>
+            <option value="">Choose…</option>
+            <option value="little">Very little (bootstrapping)</option>
+            <option value="some">Some savings / small angel money</option>
+            <option value="significant">Significant funding</option>
+          </select>
+        </label>
+        <label>Can you (or a cofounder) build software yourselves?
+          <select name="technical" required>
+            <option value="">Choose…</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </label>
+        <button type="submit" class="primary">Get my recommendation</button>
+      </form>
+      <div id="quiz-result"></div>
+    </section>
+
+    <!-- ============ Startups ============ -->
+    <section id="tab-startups" class="panel">
+      <h2>Startups raising now</h2>
+      <div id="startup-list" class="grid"></div>
+      <h3>List your startup</h3>
+      <form id="startup-form" class="card">
+        <div class="row">
+          <label>Startup name <input name="name" required /></label>
+          <label>Founder <input name="founder" required /></label>
+        </div>
+        <label>One-line pitch <input name="pitch" required /></label>
+        <div class="row">
+          <label>Business model
+            <select name="businessModel">
+              <option value="saas">SaaS</option>
+              <option value="marketplace">Marketplace</option>
+              <option value="subscription">Subscription</option>
+              <option value="ecommerce">E-commerce</option>
+              <option value="freemium">Freemium</option>
+              <option value="services">Services</option>
+              <option value="advertising">Advertising</option>
+              <option value="licensing">Licensing</option>
+            </select>
+          </label>
+          <label>Stage
+            <select name="stage">
+              <option value="pre-seed">Pre-seed</option>
+              <option value="seed">Seed</option>
+              <option value="series-a">Series A</option>
+            </select>
+          </label>
+          <label>Sector <input name="sector" placeholder="e.g. fintech" /></label>
+        </div>
+        <div class="row">
+          <label>Monthly revenue ($) <input name="monthlyRevenue" type="number" min="0" value="0" /></label>
+          <label>Monthly growth (%) <input name="monthlyGrowthPct" type="number" min="0" value="0" /></label>
+          <label>Team size <input name="teamSize" type="number" min="1" value="1" /></label>
+          <label>Raising ($) <input name="askAmount" type="number" min="0" value="0" /></label>
+        </div>
+        <button type="submit" class="primary">List startup</button>
+      </form>
+    </section>
+
+    <!-- ============ Investors ============ -->
+    <section id="tab-investors" class="panel">
+      <h2>Investor network</h2>
+      <p class="muted">Pick a startup on the Startups tab and run an AI analysis as any investor below. FounderFit charges a <strong>3% success fee</strong> only when a deal closes — browsing and analysis are free.</p>
+      <div id="investor-list" class="grid"></div>
+      <h3>Join as an investor</h3>
+      <form id="investor-form" class="card">
+        <div class="row">
+          <label>Firm / name <input name="name" required /></label>
+          <label>Contact email <input name="contact" type="email" required /></label>
+        </div>
+        <label>Investment thesis <input name="thesis" placeholder="e.g. pre-seed B2B SaaS, $100k–$500k checks" /></label>
+        <label>Sectors (comma-separated) <input name="sectors" placeholder="fintech, edtech" /></label>
+        <button type="submit" class="primary">Join network</button>
+      </form>
+    </section>
+
+    <!-- ============ Deals ============ -->
+    <section id="tab-deals" class="panel">
+      <h2>Deal pipeline</h2>
+      <p class="muted">Express interest, run diligence, close. The platform fee is applied automatically when a deal is marked closed.</p>
+      <form id="deal-form" class="card">
+        <div class="row">
+          <label>Startup <select name="startupId" id="deal-startup"></select></label>
+          <label>Investor <select name="investorId" id="deal-investor"></select></label>
+          <label>Amount ($) <input name="amount" type="number" min="1" required /></label>
+        </div>
+        <button type="submit" class="primary">Open deal</button>
+      </form>
+      <div id="deal-list"></div>
+    </section>
+  </main>
+
+  <footer class="wrap muted">
+    FounderFit prototype — AI analysis is a first-pass screen, not investment advice.
+  </footer>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-body">
+      <button id="modal-close" class="close">&times;</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
