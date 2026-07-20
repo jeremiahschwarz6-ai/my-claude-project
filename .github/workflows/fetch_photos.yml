@@ -1,0 +1,36 @@
+name: Fetch listing photos from Google Doc
+on:
+  workflow_dispatch:
+    inputs:
+      doc_id:
+        description: Google Doc ID (must be link-shared public)
+        required: true
+      out_dir:
+        description: Directory to commit extracted photos into
+        required: true
+        default: airbnb_photos
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download doc as docx and extract images
+        run: |
+          curl -sSL "https://docs.google.com/document/d/${{ inputs.doc_id }}/export?format=docx" -o /tmp/doc.docx
+          file /tmp/doc.docx
+          mkdir -p /tmp/docx_extract
+          unzip -o -q /tmp/doc.docx -d /tmp/docx_extract
+          mkdir -p "${{ inputs.out_dir }}/_meta"
+          cp /tmp/docx_extract/word/media/* "${{ inputs.out_dir }}/"
+          cp /tmp/docx_extract/word/document.xml "${{ inputs.out_dir }}/_meta/"
+          cp /tmp/docx_extract/word/_rels/document.xml.rels "${{ inputs.out_dir }}/_meta/"
+          ls -la "${{ inputs.out_dir }}"
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ inputs.out_dir }}"
+          git commit -m "Add extracted listing photos from Google Doc"
+          git push
