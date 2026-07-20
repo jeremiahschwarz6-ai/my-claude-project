@@ -1,0 +1,28 @@
+name: Relay file upload
+on:
+  workflow_dispatch:
+    inputs:
+      source_url:
+        description: URL to download the file from
+        required: true
+      target_url:
+        description: Presigned URL to PUT the file to
+        required: true
+      content_type:
+        description: Content-Type header for the PUT
+        required: true
+        default: video/mp4
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download and PUT
+        run: |
+          curl -sSL "${{ inputs.source_url }}" -o /tmp/payload
+          ls -la /tmp/payload
+          code=$(curl -s -o /tmp/put_resp -w "%{http_code}" -X PUT \
+            -H "Content-Type: ${{ inputs.content_type }}" \
+            --data-binary @/tmp/payload "${{ inputs.target_url }}")
+          echo "PUT status: $code"
+          cat /tmp/put_resp || true
+          test "$code" = "200"
