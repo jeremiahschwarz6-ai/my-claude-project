@@ -1,0 +1,54 @@
+name: Stitch video clips
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: Space-separated MP4 URLs to concatenate, in order
+        required: true
+      out_path:
+        description: Repo path for the stitched MP4
+        required: true
+        default: airbnb_video/cinematic_tour_1080p.mp4
+permissions:
+  contents: write
+jobs:
+  stitch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Download clips
+        run: |
+          mkdir -p /tmp/clips
+          i=0
+          for u in ${{ inputs.urls }}; do
+            i=$((i+1))
+            curl -sSL "$u" -o "/tmp/clips/$(printf '%02d' $i).mp4"
+          done
+          ls -la /tmp/clips
+      - name: Concat with normalization
+        run: |
+          cd /tmp/clips
+          n=$(ls *.mp4 | wc -l)
+          inputs=""; filters=""; refs=""
+          i=0
+          for f in $(ls *.mp4 | sort); do
+            inputs="$inputs -i $f"
+            filters="$filters[$i:v]scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,fps=24,format=yuv420p,setsar=1[v$i];"
+            refs="$refs[v$i]"
+            i=$((i+1))
+          done
+          ffmpeg -y $inputs -filter_complex "$filters${refs}concat=n=$n:v=1:a=0[out]" \
+            -map "[out]" -c:v libx264 -preset medium -crf 21 -maxrate 7M -bufsize 12M \
+            -movflags +faststart /tmp/stitched.mp4
+          ls -la /tmp/stitched.mp4
+      - name: Commit result
+        run: |
+          mkdir -p "$(dirname "${{ inputs.out_path }}")"
+          cp /tmp/stitched.mp4 "${{ inputs.out_path }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ inputs.out_path }}"
+          git commit -m "Add stitched cinematic walkthrough video"
+          git push
