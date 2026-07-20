@@ -3,185 +3,243 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Brian's Tree Service — professional tree removal, trimming, stump grinding and emergency storm cleanup. Licensed, insured, and locally owned." />
-  <title>Brian's Tree Service — Professional Tree Care</title>
+  <meta name="description" content="Brian's Tree Service — master arborists for tree removal, precision pruning, stump grinding and 24/7 storm response. Licensed, insured, obsessively tidy." />
+  <meta name="theme-color" content="#0d1f15" />
+  <title>Brian's Tree Service — Master Tree Care</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌲%3C/text%3E%3C/svg%3E" />
 </head>
 <body>
-  <!-- Falling-leaves canvas backdrop -->
+  <!-- Grain + spotlight overlays -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="spotlight" id="spotlight" aria-hidden="true"></div>
   <canvas id="leaves" aria-hidden="true"></canvas>
-
-  <!-- Scroll progress bar -->
   <div id="progress" aria-hidden="true"></div>
 
-  <!-- NAVBAR -->
+  <!-- Intro curtain -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro-mark">🌲</div>
+    <div class="intro-word">Brian's Tree Service</div>
+  </div>
+
+  <!-- NAV -->
   <header class="nav" id="nav">
-    <a href="#top" class="brand">
+    <a href="#top" class="brand" aria-label="Brian's Tree Service home">
       <span class="brand-mark" aria-hidden="true">🌲</span>
-      <span class="brand-text">Brian's<span> Tree Service</span></span>
+      <span class="brand-text">Brian's <em>Tree Service</em></span>
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#services">Services</a>
-      <a href="#why">Why Us</a>
-      <a href="#gallery">Work</a>
+      <a href="#process">Process</a>
+      <a href="#work">Work</a>
       <a href="#reviews">Reviews</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="tel:+15555550123" class="btn btn-phone">
-      <span aria-hidden="true">📞</span> (555) 555-0123
+    <a href="tel:+15555550123" class="btn btn-gold magnetic">
+      <span aria-hidden="true">✆</span> (555) 555-0123
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+      <span></span><span></span>
     </button>
   </header>
 
   <!-- HERO -->
   <section class="hero" id="top">
-    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-mesh" aria-hidden="true"></div>
+    <div class="hero-ridge" aria-hidden="true"></div>
     <div class="hero-inner">
-      <p class="eyebrow reveal">Licensed · Insured · Locally Owned</p>
-      <h1 class="hero-title reveal">
-        We take care of your <span class="grad">trees</span>,<br />
-        so you don't have to.
+      <p class="eyebrow reveal"><span class="line"></span> Master Arborists · Est. 2009</p>
+      <h1 class="hero-title">
+        <span class="reveal-mask"><span>The art of</span></span>
+        <span class="reveal-mask"><span class="italic gold-text">keeping trees</span></span>
+        <span class="reveal-mask"><span>beautifully alive.</span></span>
       </h1>
       <p class="hero-sub reveal">
-        Expert tree removal, trimming, and 24/7 storm cleanup. Free estimates,
-        fair prices, and a crew that treats your property like our own.
+        Precision removals, expert pruning, and round-the-clock storm response —
+        delivered by a crew that treats your property like a gallery.
       </p>
       <div class="hero-cta reveal">
-        <a href="#contact" class="btn btn-primary btn-lg">Get a Free Estimate</a>
-        <a href="#services" class="btn btn-ghost btn-lg">See Our Services</a>
+        <a href="#contact" class="btn btn-gold btn-lg magnetic">Request a Free Estimate</a>
+        <a href="#work" class="btn btn-outline btn-lg magnetic">See Our Work <span aria-hidden="true">→</span></a>
       </div>
-      <div class="hero-badges reveal" aria-hidden="false">
-        <span>⭐ 5.0 on Google</span>
-        <span>🕑 Same-day quotes</span>
-        <span>🛡️ Fully insured</span>
+      <div class="hero-meta reveal">
+        <div><strong>5.0</strong><span>★★★★★ Google</span></div>
+        <div><strong>1,200+</strong><span>trees serviced</span></div>
+        <div><strong>24/7</strong><span>storm response</span></div>
+        <div><strong>100%</strong><span>insured &amp; licensed</span></div>
       </div>
     </div>
-    <a href="#services" class="scroll-hint" aria-label="Scroll down">
-      <span></span>
-    </a>
+    <a href="#marquee" class="scroll-cue" aria-label="Scroll"><span></span></a>
   </section>
 
-  <!-- STATS -->
-  <section class="stats" aria-label="By the numbers">
-    <div class="stat"><span class="num" data-count="1200">0</span><span class="plus">+</span><p>Trees serviced</p></div>
-    <div class="stat"><span class="num" data-count="15">0</span><span class="plus">+</span><p>Years experience</p></div>
-    <div class="stat"><span class="num" data-count="24">0</span><span class="suffix">/7</span><p>Storm response</p></div>
-    <div class="stat"><span class="num" data-count="100">0</span><span class="suffix">%</span><p>Satisfaction goal</p></div>
-  </section>
+  <!-- MARQUEE -->
+  <div class="marquee" id="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Tree Removal</span><i>✦</i><span>Precision Pruning</span><i>✦</i><span>Storm Response</span><i>✦</i><span>Stump Grinding</span><i>✦</i><span>Lot Clearing</span><i>✦</i><span>Cabling &amp; Bracing</span><i>✦</i>
+      <span>Tree Removal</span><i>✦</i><span>Precision Pruning</span><i>✦</i><span>Storm Response</span><i>✦</i><span>Stump Grinding</span><i>✦</i><span>Lot Clearing</span><i>✦</i><span>Cabling &amp; Bracing</span><i>✦</i>
+    </div>
+  </div>
 
   <!-- SERVICES -->
   <section class="section" id="services">
-    <div class="section-head reveal">
-      <p class="kicker">What we do</p>
-      <h2>Full-service tree care</h2>
-      <p class="lead">From a single overgrown limb to clearing a whole lot — Brian's crew has the gear and the know-how.</p>
+    <div class="head reveal">
+      <p class="kicker">01 — What we do</p>
+      <h2>Full-service care, <span class="italic gold-text">start to sawdust.</span></h2>
+      <p class="lead">From a single overgrown limb to clearing an entire lot, our crew brings the gear, the certification, and the craftsmanship to do it right the first time.</p>
     </div>
-    <div class="cards">
-      <article class="card reveal" tabindex="0">
-        <div class="card-icon">🪓</div>
+    <div class="svc-grid">
+      <article class="svc reveal magnetic-soft" tabindex="0">
+        <span class="svc-no">01</span>
+        <div class="svc-icon">🪓</div>
         <h3>Tree Removal</h3>
-        <p>Safe, precise removal of trees of any size, including tight-access and near-structure jobs.</p>
+        <p>Safe, calculated removal of trees of any size — including tight-access and near-structure work — with rigging that protects everything below.</p>
       </article>
-      <article class="card reveal" tabindex="0">
-        <div class="card-icon">✂️</div>
-        <h3>Trimming & Pruning</h3>
-        <p>Shape and thin your trees for healthy growth, better views, and safer branches.</p>
+      <article class="svc reveal magnetic-soft" tabindex="0">
+        <span class="svc-no">02</span>
+        <div class="svc-icon">✂️</div>
+        <h3>Precision Pruning</h3>
+        <p>Structural and aesthetic pruning that improves health, opens views, and reduces risk — shaped by certified arborists, not guesswork.</p>
       </article>
-      <article class="card reveal" tabindex="0">
-        <div class="card-icon">🌩️</div>
-        <h3>Storm & Emergency</h3>
-        <p>Fallen limbs or downed trees? We respond fast, 24/7, to clear hazards and restore access.</p>
+      <article class="svc reveal magnetic-soft" tabindex="0">
+        <span class="svc-no">03</span>
+        <div class="svc-icon">🌩️</div>
+        <h3>Storm &amp; Emergency</h3>
+        <p>Downed limbs or leaning trees? We respond 24/7 to clear hazards, restore access, and make your property safe again — fast.</p>
       </article>
-      <article class="card reveal" tabindex="0">
-        <div class="card-icon">🪵</div>
+      <article class="svc reveal magnetic-soft" tabindex="0">
+        <span class="svc-no">04</span>
+        <div class="svc-icon">🪵</div>
         <h3>Stump Grinding</h3>
-        <p>Grind stumps below grade so you can reclaim your yard and replant with a clean slate.</p>
+        <p>We grind stumps well below grade so you can reclaim the space, replant, or lay turf over a clean, level finish.</p>
       </article>
-      <article class="card reveal" tabindex="0">
-        <div class="card-icon">🌱</div>
-        <h3>Lot Clearing</h3>
-        <p>Clearing brush and trees for new builds, fence lines, or defensible space around your home.</p>
+      <article class="svc reveal magnetic-soft" tabindex="0">
+        <span class="svc-no">05</span>
+        <div class="svc-icon">🌱</div>
+        <h3>Lot &amp; Land Clearing</h3>
+        <p>Brush, saplings, and mature trees cleared for new builds, fence lines, and defensible space around your home.</p>
       </article>
-      <article class="card reveal" tabindex="0">
-        <div class="card-icon">🚚</div>
-        <h3>Cleanup & Hauling</h3>
-        <p>We leave your property cleaner than we found it — every chip and log hauled away.</p>
+      <article class="svc reveal magnetic-soft" tabindex="0">
+        <span class="svc-no">06</span>
+        <div class="svc-icon">🔗</div>
+        <h3>Cabling &amp; Bracing</h3>
+        <p>Structural support for prized, mature trees — extending their life and protecting what's underneath them.</p>
       </article>
     </div>
   </section>
 
-  <!-- WHY US -->
+  <!-- PROCESS -->
+  <section class="section process" id="process">
+    <div class="head reveal">
+      <p class="kicker gold-kicker">02 — How it works</p>
+      <h2>Four steps. <span class="italic">Zero surprises.</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-no">01</span>
+        <h3>Free assessment</h3>
+        <p>We walk the site, listen to your goals, and flag any risks — no charge, no pressure.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-no">02</span>
+        <h3>Written estimate</h3>
+        <p>A clear, itemized quote with a fixed price. What we say is what you pay.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-no">03</span>
+        <h3>The work</h3>
+        <p>Certified crews, modern equipment, and careful rigging — done on schedule.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-no">04</span>
+        <h3>Spotless finish</h3>
+        <p>Every chip, log, and leaf hauled away. We leave it cleaner than we found it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY / SPLIT -->
   <section class="section why" id="why">
     <div class="why-grid">
       <div class="why-text reveal">
-        <p class="kicker">Why Brian's</p>
-        <h2>The crew your neighbors already trust</h2>
-        <p class="lead">We're a locally owned team — not a national franchise. When you call, you talk to a real person, and often to Brian himself.</p>
+        <p class="kicker gold-kicker">Why Brian's</p>
+        <h2>The crew your neighbors <span class="italic gold-text">already trust.</span></h2>
+        <p class="lead">We're locally owned — not a franchise. When you call, you reach a real person, and often Brian himself. That accountability shows up in every cut.</p>
         <ul class="ticks">
-          <li>Free, no-pressure written estimates</li>
-          <li>Fully licensed &amp; insured — you're covered</li>
-          <li>Clean, respectful crews and tidy job sites</li>
-          <li>Honest pricing with no surprise fees</li>
-          <li>Modern equipment for faster, safer work</li>
+          <li>Certified arborists &amp; trained climbers</li>
+          <li>Fully licensed &amp; insured — you're never liable</li>
+          <li>Fixed written quotes, no surprise fees</li>
+          <li>Immaculate cleanup on every job</li>
+          <li>Same-day estimates &amp; 24/7 emergencies</li>
         </ul>
-        <a href="#contact" class="btn btn-primary">Book your estimate</a>
+        <a href="#contact" class="btn btn-gold magnetic">Book your estimate</a>
       </div>
-      <div class="why-media reveal" aria-hidden="true">
-        <div class="tilt">
-          <div class="tilt-inner">
-            <div class="badge-float b1">🛡️ Insured</div>
-            <div class="badge-float b2">⭐ 5.0 rated</div>
-            <div class="badge-float b3">⚡ 24/7</div>
-            <div class="tree-scene">🌳</div>
+      <div class="why-visual reveal" aria-hidden="true">
+        <div class="card-3d" id="card3d">
+          <div class="card-3d-inner">
+            <div class="c3d-glow"></div>
+            <div class="c3d-scene">🌳</div>
+            <div class="c3d-chip chip-1">🛡️ Insured</div>
+            <div class="c3d-chip chip-2">★ 5.0 rated</div>
+            <div class="c3d-chip chip-3">⚡ 24/7</div>
+            <div class="c3d-caption">Certified · Insured · Local</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY -->
-  <section class="section" id="gallery">
-    <div class="section-head reveal">
-      <p class="kicker">Recent work</p>
-      <h2>Before &amp; after</h2>
-      <p class="lead">A few jobs from around town. Swap these tiles for your own photos.</p>
+  <!-- WORK -->
+  <section class="section" id="work">
+    <div class="head reveal">
+      <p class="kicker">03 — Recent work</p>
+      <h2>A few jobs <span class="italic gold-text">from around town.</span></h2>
+      <p class="lead">Swap these tiles for your own before-and-after photos.</p>
     </div>
     <div class="gallery">
-      <figure class="tile reveal" style="--h:1"><div class="tile-ph g1">🌲</div><figcaption>Large oak removal</figcaption></figure>
-      <figure class="tile reveal" style="--h:2"><div class="tile-ph g2">🪓</div><figcaption>Storm cleanup</figcaption></figure>
-      <figure class="tile reveal" style="--h:1"><div class="tile-ph g3">✂️</div><figcaption>Canopy trimming</figcaption></figure>
-      <figure class="tile reveal" style="--h:2"><div class="tile-ph g4">🪵</div><figcaption>Stump grinding</figcaption></figure>
-      <figure class="tile reveal" style="--h:1"><div class="tile-ph g5">🌱</div><figcaption>Lot clearing</figcaption></figure>
-      <figure class="tile reveal" style="--h:2"><div class="tile-ph g6">🚚</div><figcaption>Full haul-away</figcaption></figure>
+      <figure class="tile reveal" style="--h:1.35"><div class="tile-ph g1">🌲</div><figcaption><span>Large oak removal</span><em>Structural rigging</em></figcaption></figure>
+      <figure class="tile reveal" style="--h:1"><div class="tile-ph g2">🪓</div><figcaption><span>Storm cleanup</span><em>Same-day response</em></figcaption></figure>
+      <figure class="tile reveal" style="--h:1.15"><div class="tile-ph g3">✂️</div><figcaption><span>Canopy pruning</span><em>Health &amp; clearance</em></figcaption></figure>
+      <figure class="tile reveal" style="--h:1"><div class="tile-ph g4">🪵</div><figcaption><span>Stump grinding</span><em>Below-grade finish</em></figcaption></figure>
+      <figure class="tile reveal" style="--h:1.3"><div class="tile-ph g5">🌱</div><figcaption><span>Lot clearing</span><em>New-build prep</em></figcaption></figure>
+      <figure class="tile reveal" style="--h:1"><div class="tile-ph g6">🚚</div><figcaption><span>Full haul-away</span><em>Spotless site</em></figcaption></figure>
     </div>
   </section>
 
   <!-- REVIEWS -->
   <section class="section reviews" id="reviews">
-    <div class="section-head reveal">
-      <p class="kicker">Kind words</p>
-      <h2>What customers say</h2>
+    <div class="head reveal">
+      <p class="kicker gold-kicker">04 — Kind words</p>
+      <h2>Rated <span class="gold-text">5.0</span> by the people who matter.</h2>
     </div>
     <div class="quotes">
       <blockquote class="quote reveal">
         <div class="stars">★★★★★</div>
-        <p>"Brian's crew took down a huge dead pine leaning over our house without a scratch on anything. Fast, professional, and cleaned up spotless."</p>
-        <cite>— Sarah M.</cite>
+        <p>"They took down a huge dead pine leaning over our house without a scratch on anything. Fast, professional, and cleaned up spotless."</p>
+        <cite><span class="avatar">S</span> Sarah M. <em>· Homeowner</em></cite>
       </blockquote>
       <blockquote class="quote reveal">
         <div class="stars">★★★★★</div>
-        <p>"Called after a storm dropped a limb on our driveway. They were out the same day and had it cleared in an hour. Lifesavers."</p>
-        <cite>— David R.</cite>
+        <p>"Called after a storm dropped a limb on our driveway. Out the same day and cleared in an hour. Absolute lifesavers."</p>
+        <cite><span class="avatar">D</span> David R. <em>· Property manager</em></cite>
       </blockquote>
       <blockquote class="quote reveal">
         <div class="stars">★★★★★</div>
-        <p>"Fair price, no upselling, and they actually showed up when they said they would. Rare these days. Highly recommend."</p>
-        <cite>— Priya K.</cite>
+        <p>"Fair price, no upselling, and they showed up exactly when they said. Rare these days. I've recommended them to everyone."</p>
+        <cite><span class="avatar">P</span> Priya K. <em>· Homeowner</em></cite>
       </blockquote>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band reveal">
+    <div class="cta-inner">
+      <h2>Got a tree that's keeping you up at night?</h2>
+      <p>Send us a photo and a few details — we'll get back to you the same day with an honest, fixed quote.</p>
+      <a href="#contact" class="btn btn-gold btn-lg magnetic">Get my free estimate</a>
     </div>
   </section>
 
@@ -189,41 +247,44 @@
   <section class="section contact" id="contact">
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <p class="kicker">Get in touch</p>
-        <h2>Free estimate, no pressure</h2>
+        <p class="kicker gold-kicker">Get in touch</p>
+        <h2>Free estimate, <span class="italic">no pressure.</span></h2>
         <p class="lead">Tell us about your trees and we'll get back to you fast — usually the same day.</p>
         <ul class="contact-list">
-          <li><span aria-hidden="true">📞</span> <a href="tel:+15555550123">(555) 555-0123</a></li>
-          <li><span aria-hidden="true">✉️</span> <a href="mailto:hello@brianstreeservice.com">hello@brianstreeservice.com</a></li>
-          <li><span aria-hidden="true">📍</span> <a href="https://maps.app.goo.gl/VBGhfmJYozqXLnPk7" target="_blank" rel="noopener">Serving your local area — view on map</a></li>
-          <li><span aria-hidden="true">🕑</span> Mon–Sat 7am–7pm · 24/7 emergency</li>
+          <li><span class="ci" aria-hidden="true">✆</span> <a href="tel:+15555550123">(555) 555-0123</a></li>
+          <li><span class="ci" aria-hidden="true">✉</span> <a href="mailto:hello@brianstreeservice.com">hello@brianstreeservice.com</a></li>
+          <li><span class="ci" aria-hidden="true">⌖</span> <a href="https://maps.app.goo.gl/VBGhfmJYozqXLnPk7" target="_blank" rel="noopener">Serving your local area — view on map</a></li>
+          <li><span class="ci" aria-hidden="true">◷</span> Mon–Sat 7am–7pm · 24/7 emergency</li>
         </ul>
       </div>
       <form class="contact-form reveal" id="quoteForm" novalidate>
-        <div class="field">
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Smith" />
+        <div class="row">
+          <div class="field">
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder=" " />
+            <label for="name">Name</label>
+          </div>
+          <div class="field">
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder=" " />
+            <label for="phone">Phone</label>
+          </div>
         </div>
         <div class="field">
-          <label for="phone">Phone</label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="(555) 555-0123" />
-        </div>
-        <div class="field">
-          <label for="service">Service needed</label>
           <select id="service" name="service">
             <option>Tree removal</option>
-            <option>Trimming &amp; pruning</option>
+            <option>Precision pruning</option>
             <option>Storm / emergency</option>
             <option>Stump grinding</option>
             <option>Lot clearing</option>
+            <option>Cabling &amp; bracing</option>
             <option>Something else</option>
           </select>
+          <label for="service" class="static-label">Service needed</label>
         </div>
         <div class="field">
-          <label for="details">Details</label>
-          <textarea id="details" name="details" rows="4" placeholder="Tell us about the job — how many trees, size, access, timing…"></textarea>
+          <textarea id="details" name="details" rows="4" placeholder=" "></textarea>
+          <label for="details">Details of the job</label>
         </div>
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Request my free estimate</button>
+        <button type="submit" class="btn btn-gold btn-lg btn-block magnetic">Request my free estimate</button>
         <p class="form-note" id="formNote" role="status"></p>
       </form>
     </div>
@@ -232,18 +293,44 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="brand brand-footer">
-        <span class="brand-mark" aria-hidden="true">🌲</span>
-        <span class="brand-text">Brian's<span> Tree Service</span></span>
+      <div class="footer-brand">
+        <div class="brand brand-footer">
+          <span class="brand-mark" aria-hidden="true">🌲</span>
+          <span class="brand-text">Brian's <em>Tree Service</em></span>
+        </div>
+        <p>Certified, insured tree care for homeowners and businesses. Precision work, honest prices, and a site left spotless.</p>
       </div>
-      <p>Professional, insured tree care for homeowners and businesses.</p>
-      <p class="muted">© <span id="year"></span> Brian's Tree Service. All rights reserved.</p>
+      <div class="footer-cols">
+        <div>
+          <h4>Services</h4>
+          <a href="#services">Tree removal</a>
+          <a href="#services">Precision pruning</a>
+          <a href="#services">Storm response</a>
+          <a href="#services">Stump grinding</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="#why">Why us</a>
+          <a href="#process">Our process</a>
+          <a href="#work">Recent work</a>
+          <a href="#reviews">Reviews</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="tel:+15555550123">(555) 555-0123</a>
+          <a href="mailto:hello@brianstreeservice.com">Email us</a>
+          <a href="https://maps.app.goo.gl/VBGhfmJYozqXLnPk7" target="_blank" rel="noopener">Find us</a>
+        </div>
+      </div>
     </div>
-    <a href="#top" class="to-top" aria-label="Back to top">↑</a>
+    <div class="footer-base">
+      <p class="muted">© <span id="year"></span> Brian's Tree Service. All rights reserved.</p>
+      <p class="muted">Licensed &amp; Insured · Certified Arborists</p>
+    </div>
+    <a href="#top" class="to-top magnetic" aria-label="Back to top">↑</a>
   </footer>
 
-  <!-- Sticky mobile call bar -->
-  <a href="tel:+15555550123" class="mobile-call">📞 Call for a Free Estimate</a>
+  <a href="tel:+15555550123" class="mobile-call">✆ Call for a Free Estimate</a>
 
   <script src="script.js"></script>
 </body>
