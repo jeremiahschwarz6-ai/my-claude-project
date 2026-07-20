@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Brian's Tree Service — professional tree removal, trimming, stump grinding and emergency storm cleanup. Licensed, insured, and locally owned." />
+  <title>Brian's Tree Service — Professional Tree Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌲%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- Falling-leaves canvas backdrop -->
+  <canvas id="leaves" aria-hidden="true"></canvas>
+
+  <!-- Scroll progress bar -->
+  <div id="progress" aria-hidden="true"></div>
+
+  <!-- NAVBAR -->
+  <header class="nav" id="nav">
+    <a href="#top" class="brand">
+      <span class="brand-mark" aria-hidden="true">🌲</span>
+      <span class="brand-text">Brian's<span> Tree Service</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#gallery">Work</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="tel:+15555550123" class="btn btn-phone">
+      <span aria-hidden="true">📞</span> (555) 555-0123
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <p class="eyebrow reveal">Licensed · Insured · Locally Owned</p>
+      <h1 class="hero-title reveal">
+        We take care of your <span class="grad">trees</span>,<br />
+        so you don't have to.
+      </h1>
+      <p class="hero-sub reveal">
+        Expert tree removal, trimming, and 24/7 storm cleanup. Free estimates,
+        fair prices, and a crew that treats your property like our own.
+      </p>
+      <div class="hero-cta reveal">
+        <a href="#contact" class="btn btn-primary btn-lg">Get a Free Estimate</a>
+        <a href="#services" class="btn btn-ghost btn-lg">See Our Services</a>
+      </div>
+      <div class="hero-badges reveal" aria-hidden="false">
+        <span>⭐ 5.0 on Google</span>
+        <span>🕑 Same-day quotes</span>
+        <span>🛡️ Fully insured</span>
+      </div>
+    </div>
+    <a href="#services" class="scroll-hint" aria-label="Scroll down">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats" aria-label="By the numbers">
+    <div class="stat"><span class="num" data-count="1200">0</span><span class="plus">+</span><p>Trees serviced</p></div>
+    <div class="stat"><span class="num" data-count="15">0</span><span class="plus">+</span><p>Years experience</p></div>
+    <div class="stat"><span class="num" data-count="24">0</span><span class="suffix">/7</span><p>Storm response</p></div>
+    <div class="stat"><span class="num" data-count="100">0</span><span class="suffix">%</span><p>Satisfaction goal</p></div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="section-head reveal">
+      <p class="kicker">What we do</p>
+      <h2>Full-service tree care</h2>
+      <p class="lead">From a single overgrown limb to clearing a whole lot — Brian's crew has the gear and the know-how.</p>
+    </div>
+    <div class="cards">
+      <article class="card reveal" tabindex="0">
+        <div class="card-icon">🪓</div>
+        <h3>Tree Removal</h3>
+        <p>Safe, precise removal of trees of any size, including tight-access and near-structure jobs.</p>
+      </article>
+      <article class="card reveal" tabindex="0">
+        <div class="card-icon">✂️</div>
+        <h3>Trimming & Pruning</h3>
+        <p>Shape and thin your trees for healthy growth, better views, and safer branches.</p>
+      </article>
+      <article class="card reveal" tabindex="0">
+        <div class="card-icon">🌩️</div>
+        <h3>Storm & Emergency</h3>
+        <p>Fallen limbs or downed trees? We respond fast, 24/7, to clear hazards and restore access.</p>
+      </article>
+      <article class="card reveal" tabindex="0">
+        <div class="card-icon">🪵</div>
+        <h3>Stump Grinding</h3>
+        <p>Grind stumps below grade so you can reclaim your yard and replant with a clean slate.</p>
+      </article>
+      <article class="card reveal" tabindex="0">
+        <div class="card-icon">🌱</div>
+        <h3>Lot Clearing</h3>
+        <p>Clearing brush and trees for new builds, fence lines, or defensible space around your home.</p>
+      </article>
+      <article class="card reveal" tabindex="0">
+        <div class="card-icon">🚚</div>
+        <h3>Cleanup & Hauling</h3>
+        <p>We leave your property cleaner than we found it — every chip and log hauled away.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section why" id="why">
+    <div class="why-grid">
+      <div class="why-text reveal">
+        <p class="kicker">Why Brian's</p>
+        <h2>The crew your neighbors already trust</h2>
+        <p class="lead">We're a locally owned team — not a national franchise. When you call, you talk to a real person, and often to Brian himself.</p>
+        <ul class="ticks">
+          <li>Free, no-pressure written estimates</li>
+          <li>Fully licensed &amp; insured — you're covered</li>
+          <li>Clean, respectful crews and tidy job sites</li>
+          <li>Honest pricing with no surprise fees</li>
+          <li>Modern equipment for faster, safer work</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Book your estimate</a>
+      </div>
+      <div class="why-media reveal" aria-hidden="true">
+        <div class="tilt">
+          <div class="tilt-inner">
+            <div class="badge-float b1">🛡️ Insured</div>
+            <div class="badge-float b2">⭐ 5.0 rated</div>
+            <div class="badge-float b3">⚡ 24/7</div>
+            <div class="tree-scene">🌳</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section" id="gallery">
+    <div class="section-head reveal">
+      <p class="kicker">Recent work</p>
+      <h2>Before &amp; after</h2>
+      <p class="lead">A few jobs from around town. Swap these tiles for your own photos.</p>
+    </div>
+    <div class="gallery">
+      <figure class="tile reveal" style="--h:1"><div class="tile-ph g1">🌲</div><figcaption>Large oak removal</figcaption></figure>
+      <figure class="tile reveal" style="--h:2"><div class="tile-ph g2">🪓</div><figcaption>Storm cleanup</figcaption></figure>
+      <figure class="tile reveal" style="--h:1"><div class="tile-ph g3">✂️</div><figcaption>Canopy trimming</figcaption></figure>
+      <figure class="tile reveal" style="--h:2"><div class="tile-ph g4">🪵</div><figcaption>Stump grinding</figcaption></figure>
+      <figure class="tile reveal" style="--h:1"><div class="tile-ph g5">🌱</div><figcaption>Lot clearing</figcaption></figure>
+      <figure class="tile reveal" style="--h:2"><div class="tile-ph g6">🚚</div><figcaption>Full haul-away</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section reviews" id="reviews">
+    <div class="section-head reveal">
+      <p class="kicker">Kind words</p>
+      <h2>What customers say</h2>
+    </div>
+    <div class="quotes">
+      <blockquote class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Brian's crew took down a huge dead pine leaning over our house without a scratch on anything. Fast, professional, and cleaned up spotless."</p>
+        <cite>— Sarah M.</cite>
+      </blockquote>
+      <blockquote class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Called after a storm dropped a limb on our driveway. They were out the same day and had it cleared in an hour. Lifesavers."</p>
+        <cite>— David R.</cite>
+      </blockquote>
+      <blockquote class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Fair price, no upselling, and they actually showed up when they said they would. Rare these days. Highly recommend."</p>
+        <cite>— Priya K.</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p class="kicker">Get in touch</p>
+        <h2>Free estimate, no pressure</h2>
+        <p class="lead">Tell us about your trees and we'll get back to you fast — usually the same day.</p>
+        <ul class="contact-list">
+          <li><span aria-hidden="true">📞</span> <a href="tel:+15555550123">(555) 555-0123</a></li>
+          <li><span aria-hidden="true">✉️</span> <a href="mailto:hello@brianstreeservice.com">hello@brianstreeservice.com</a></li>
+          <li><span aria-hidden="true">📍</span> <a href="https://maps.app.goo.gl/VBGhfmJYozqXLnPk7" target="_blank" rel="noopener">Serving your local area — view on map</a></li>
+          <li><span aria-hidden="true">🕑</span> Mon–Sat 7am–7pm · 24/7 emergency</li>
+        </ul>
+      </div>
+      <form class="contact-form reveal" id="quoteForm" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Smith" />
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="(555) 555-0123" />
+        </div>
+        <div class="field">
+          <label for="service">Service needed</label>
+          <select id="service" name="service">
+            <option>Tree removal</option>
+            <option>Trimming &amp; pruning</option>
+            <option>Storm / emergency</option>
+            <option>Stump grinding</option>
+            <option>Lot clearing</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="details">Details</label>
+          <textarea id="details" name="details" rows="4" placeholder="Tell us about the job — how many trees, size, access, timing…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Request my free estimate</button>
+        <p class="form-note" id="formNote" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="brand brand-footer">
+        <span class="brand-mark" aria-hidden="true">🌲</span>
+        <span class="brand-text">Brian's<span> Tree Service</span></span>
+      </div>
+      <p>Professional, insured tree care for homeowners and businesses.</p>
+      <p class="muted">© <span id="year"></span> Brian's Tree Service. All rights reserved.</p>
+    </div>
+    <a href="#top" class="to-top" aria-label="Back to top">↑</a>
+  </footer>
+
+  <!-- Sticky mobile call bar -->
+  <a href="tel:+15555550123" class="mobile-call">📞 Call for a Free Estimate</a>
+
+  <script src="script.js"></script>
+</body>
+</html>
