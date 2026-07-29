@@ -1,0 +1,105 @@
+name: Edit interview video
+# Downloads interview clips (e.g. from link-shared Google Drive), normalizes them,
+# concatenates with HARD CUTS (no dissolves), keeps and levels the audio, then
+# fades up from black at the start and fades to black at the end. Commits one MP4.
+on:
+  workflow_dispatch:
+    inputs:
+      drive_ids:
+        description: Space-separated Google Drive file IDs, in play order (interviewee first and last)
+        required: true
+      out_path:
+        description: Repo path for the finished MP4
+        required: true
+        default: jerrys_world/interview_edit_1080p.mp4
+      fade_seconds:
+        description: Fade-up / fade-to-black duration (seconds)
+        required: false
+        default: "1"
+permissions:
+  contents: write
+jobs:
+  edit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Download clips from Google Drive
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/clips
+          # Robust link-shared Google Drive download (handles the >25MB virus-scan interstitial).
+          dl() {
+            id="$1"; out="$2"
+            curl -sSL -c /tmp/cj "https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=t" -o "$out"
+            if head -c 20 "$out" | grep -qiE '<!DOCTYPE|<html'; then
+              curl -sSL -c /tmp/cj "https://drive.google.com/uc?export=download&id=${id}" -o /tmp/inter.html
+              confirm=$(sed -n 's/.*confirm=\([0-9A-Za-z_-]*\).*/\1/p' /tmp/inter.html | head -1)
+              uuid=$(sed -n 's/.*name="uuid" value="\([^"]*\)".*/\1/p' /tmp/inter.html | head -1)
+              curl -sSL -b /tmp/cj "https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=${confirm:-t}&uuid=${uuid}" -o "$out"
+            fi
+          }
+          i=0
+          for id in ${{ inputs.drive_ids }}; do
+            i=$((i+1))
+            out="/tmp/clips/$(printf '%02d' $i).mov"
+            echo "Downloading clip $i (id=$id)"
+            dl "$id" "$out"
+            if head -c 20 "$out" | grep -qiE '<!DOCTYPE|<html'; then
+              echo "ERROR: clip $i came back as HTML, not video. Is the file link-shared to 'Anyone with the link'?" >&2
+              exit 1
+            fi
+            echo "  -> $(du -h "$out" | cut -f1)"
+          done
+          ls -la /tmp/clips
+
+      - name: Cut, level audio, and add fades
+        run: |
+          set -euo pipefail
+          cd /tmp/clips
+          F="${{ inputs.fade_seconds }}"
+          files=$(ls *.mov | sort)
+          n=$(echo "$files" | wc -l)
+
+          # Total duration (sum of clip durations) so we know where the out-fade starts.
+          total=0
+          for f in $files; do
+            d=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f")
+            total=$(awk -v a="$total" -v b="$d" 'BEGIN{printf "%.3f", a+b}')
+          done
+          out_start=$(awk -v t="$total" -v f="$F" 'BEGIN{printf "%.3f", (t-f>0)?t-f:0}')
+          echo "Total runtime: ${total}s  |  out-fade starts at ${out_start}s"
+
+          inputs=""; vfilters=""; concat=""
+          i=0
+          for f in $files; do
+            inputs="$inputs -i $f"
+            vfilters="$vfilters[$i:v]scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,fps=24,format=yuv420p,setsar=1[v$i];"
+            vfilters="$vfilters[$i:a]aresample=async=1:first_pts=0,aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo[a$i];"
+            concat="$concat[v$i][a$i]"
+            i=$((i+1))
+          done
+
+          ffmpeg -y $inputs -filter_complex \
+            "${vfilters}${concat}concat=n=${n}:v=1:a=1[cv][ca];\
+             [cv]fade=t=in:st=0:d=${F},fade=t=out:st=${out_start}:d=${F}[outv];\
+             [ca]afade=t=in:st=0:d=${F},afade=t=out:st=${out_start}:d=${F},loudnorm=I=-16:TP=-1.5:LRA=11[outa]" \
+            -map "[outv]" -map "[outa]" \
+            -c:v libx264 -preset medium -crf 20 -maxrate 8M -bufsize 14M -pix_fmt yuv420p \
+            -c:a aac -b:a 192k -movflags +faststart /tmp/interview.mp4
+          ffprobe -v error -show_entries format=duration -of csv=p=0 /tmp/interview.mp4
+          ls -la /tmp/interview.mp4
+
+      - name: Commit result
+        run: |
+          set -euo pipefail
+          mkdir -p "$(dirname "${{ inputs.out_path }}")"
+          cp /tmp/interview.mp4 "${{ inputs.out_path }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ inputs.out_path }}"
+          git commit -m "Add edited interview video (fades + hard cuts, audio leveled)"
+          git push
