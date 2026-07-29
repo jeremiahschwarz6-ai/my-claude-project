@@ -1,0 +1,62 @@
+name: Transcribe interview
+# Runs speech-to-text (faster-whisper) on the rendered interview video and commits a
+# timestamped transcript, so the off-camera interviewer questions can be located and cut.
+on:
+  workflow_dispatch:
+    inputs:
+      video_path:
+        description: Repo path of the video to transcribe
+        required: true
+        default: jerrys_world/interview_edit_1080p.mp4
+      out_path:
+        description: Repo path for the transcript
+        required: true
+        default: jerrys_world/transcript.txt
+      model:
+        description: Whisper model size (tiny/base/small/medium)
+        required: false
+        default: "small"
+permissions:
+  contents: write
+jobs:
+  transcribe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install faster-whisper
+        run: pip install --quiet faster-whisper
+      - name: Extract audio
+        run: ffmpeg -y -i "${{ inputs.video_path }}" -ar 16000 -ac 1 -vn /tmp/audio.wav
+      - name: Transcribe with word/segment timestamps
+        run: |
+          python - <<'PY'
+          from faster_whisper import WhisperModel
+          import datetime
+          def ts(s):
+              return str(datetime.timedelta(seconds=round(float(s), 1)))[:-4] if False else f"{int(s//60):02d}:{s%60:06.3f}"
+          model = WhisperModel("${{ inputs.model }}", device="cpu", compute_type="int8")
+          segments, info = model.transcribe("/tmp/audio.wav", vad_filter=True,
+                                            word_timestamps=False, beam_size=5)
+          out = "${{ inputs.out_path }}"
+          import os
+          os.makedirs(os.path.dirname(out), exist_ok=True)
+          with open(out, "w") as f:
+              f.write(f"# Transcript (model={info.__dict__.get('language','?')} lang, whisper=${{ inputs.model }})\n")
+              f.write("# format: [start -> end] text\n\n")
+              for s in segments:
+                  line = f"[{ts(s.start)} -> {ts(s.end)}] {s.text.strip()}"
+                  print(line)
+                  f.write(line + "\n")
+          PY
+      - name: Commit transcript
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ inputs.out_path }}"
+          git commit -m "Add interview transcript with timestamps"
+          git push
