@@ -1,0 +1,32 @@
+# Transcript (model=en lang, whisper=small)
+# format: [start -> end] text
+
+[00:00.400 -> 00:03.400] Start by telling me your name, title, and what you do here.
+[00:03.400 -> 00:05.400] Start by telling me your name, title, and what you do here.
+[00:05.400 -> 00:06.900] So my name is Emerson Post.
+[00:06.900 -> 00:10.900] I'm kind of like a volunteer director here at SHUDE.
+[00:10.900 -> 00:15.900] I kind of help organize the SHUDE Rives to set up the different events that are happening,
+[00:15.900 -> 00:19.400] you know, make sure everything is functioning efficiently,
+[00:19.400 -> 00:23.400] and just build good relationships with the people there as well.
+[00:23.400 -> 00:25.900] How did you first get involved with SHUDE and what made you stay?
+[00:25.900 -> 00:28.400] So how did I first get involved with SHUDE and what made me stay?
+[00:28.400 -> 00:31.900] So I first got involved, my friend reached out to me about a long-tearing event.
+[00:31.900 -> 00:35.400] So I went, and I thought I was just going to be kind of sorting shoes.
+[00:35.400 -> 00:38.400] But what really made me stay was the conversations that I had
+[00:38.400 -> 00:41.900] and just being able to see kids light up for me, giving them new shoes.
+[00:41.900 -> 00:44.900] Tell me about a project here that you should be proud of.
+[00:44.900 -> 00:47.900] So a moment or project here that I'm really proud of was
+[00:47.900 -> 00:49.900] I helped a student through our shooting stars program.
+[00:49.900 -> 00:52.400] They had been running in shoes that were just completely worn down
+[00:52.400 -> 00:54.400] and they didn't really know what a new pair of shoes was.
+[00:54.400 -> 00:57.400] And we were able to provide that for them and just seeing them light up
+[00:57.400 -> 01:00.900] and being able to use them to help benefit their health and stuff was amazing.
+[01:00.900 -> 01:04.900] What do you wish more people understood about what SHUDE does?
+[01:04.900 -> 01:08.900] I wish more people understood about what SHUDE does is
+[01:08.900 -> 01:11.900] a lot of people assume that shoes are just kind of an article of clothing
+[01:11.900 -> 01:17.900] but really they help with your everyday life, your health, your mobility and your confidence.
+[01:17.900 -> 01:19.900] And it's a big part of your life.
+[01:19.900 -> 01:25.900] If you could say one thing to someone thinking potentially supporting SHUDE, what would it be?
+[01:25.900 -> 01:29.900] If I could say one thing to someone about thinking about supporting SHUDE or volunteering,
+[01:29.900 -> 01:34.400] I would say that every pair of shoes has the power to change someone's day
+[01:34.400 -> 01:36.400] and potentially even their life.
