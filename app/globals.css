@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --night: #14121c;
+  --nightsoft: #1c1926;
+  --ink: #f4efe8;
+  --muted: #8b8598;
+  --line: #2a2636;
+  --cool: #6ea8ff;
+  --dawn: #f5b549;
+  --dawn2: #ff9e6d;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--night);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Selection */
+::selection {
+  background: var(--dawn);
+  color: var(--night);
+}
+
+/* Focus — always visible for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--cool);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Utility layer */
+@layer components {
+  .eyebrow {
+    font-family: var(--font-mono), monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .display {
+    font-family: var(--font-display), sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+  }
+
+  .card {
+    background: var(--nightsoft);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+  }
+
+  .dawn-text {
+    background: linear-gradient(100deg, var(--dawn), var(--dawn2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .dawn-edge {
+    position: relative;
+  }
+  .dawn-edge::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(100deg, var(--dawn), var(--dawn2));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+/* Ambient orbs — respect reduced motion by disabling drift below */
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb {
+    animation: none !important;
+  }
+  .no-motion-hidden {
+    display: none;
+  }
+}
+
+/* Thin scrollbars inside stream cards */
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 999px;
+}
