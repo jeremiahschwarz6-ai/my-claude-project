@@ -159,7 +159,23 @@ const bodyContent = [
 
   // Timeline
   h1("Implementation Timeline"),
-  body("The campaign runs across the four weeks of September 2026. The timeline below coordinates platform activity, mobile engagement, blogging, and user-generated content so that each channel reinforces a shared weekly focus without duplicating content."),
+  body("The campaign runs across the four weeks of September 2026, with each week organized around a single narrative beat—launch, community, movement, and impact—so that platform activity, mobile engagement, blogging, and user-generated content all reinforce a shared weekly focus without duplicating content."),
+  body([
+    run("Week One (September 1–7) launches the campaign under the theme “Sole to Soul.” ", { bold: true }),
+    run("Instagram opens with the before-and-after launch carousel, TikTok debuts the workshop-transformation video, and Facebook publishes the event page for the first Saturday collection drive on September 6. The week’s user-generated content is the #SoleToSoulRVA Photo Challenge, the blog runs the founder’s origin story, and the mobile text-to-give option goes live so supporters can act immediately."),
+  ]),
+  body([
+    run("Week Two (September 8–14) shifts to community and the question of why running matters. ", { bold: true }),
+    run("Instagram uses Stories to run the “Why I Run” prompt, TikTok features runner duets, and Facebook mobilizes local running clubs to host their own collection drives. The “Why I Run” Story prompt serves as the week’s user-generated content, and the blog spotlights a volunteer profile that puts a human face on the refurbishing work."),
+  ]),
+  body([
+    run("Week Three (September 15–21) builds momentum around movement through the “Miles for Soles” push. ", { bold: true }),
+    run("Instagram shares a Reel showcasing collective Strava totals, TikTok posts a mileage recap, and Facebook announces the sponsor match tied to the challenge. The Strava “Miles for Soles” club challenge is the week’s mobile-driven user-generated content, and the blog explains the science of proper shoe fit to reinforce the dignity theme."),
+  ]),
+  body([
+    run("Week Four (September 22–30) closes on impact and dignity delivered. ", { bold: true }),
+    run("Instagram publishes an impact carousel, TikTok releases a thank-you montage, and Facebook closes out the fundraiser. The Shoe-Fit “Dignity Quiz” provides the final week’s interactive user-generated content, and the blog delivers a campaign wrap-up reporting results and issuing a closing call to give, volunteer, or donate shoes."),
+  ]),
 ];
 
 // ---------- timeline table ----------
@@ -239,7 +255,6 @@ const timelineTable = new Table({
 });
 
 const afterTable = [
-  blank(),
   body("This integrated schedule ensures that each week advances a single narrative beat—launch, community, movement, and impact—while every platform, the mobile challenge, and the blog contribute a distinct piece of that story. The result is a cohesive, non-duplicative campaign that attracts new supporters, engages them through participation, and informs them of Shood’s measurable impact."),
 ];
 
@@ -299,7 +314,6 @@ const doc = new Document({
       children: [
         ...titlePage,
         ...bodyContent,
-        timelineTable,
         ...afterTable,
         ...references,
       ],
