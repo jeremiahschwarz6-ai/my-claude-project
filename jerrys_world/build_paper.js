@@ -60,9 +60,9 @@ const part1Heading = new Paragraph({
 });
 
 const part1Body = p([
-  run('A worldview is the comprehensive framework of fundamental beliefs through which a person interprets reality and orients daily life. Sire (2020) describes it as “a commitment, a fundamental orientation of the heart” that can be expressed as a set of presuppositions “which we hold … about the basic constitution of reality” (p. 20). It functions like a set of lenses, coloring how one perceives origin, purpose, and truth. A Biblical Worldview is that framework shaped and governed by the truth claims of Scripture, taking the Bible as the authoritative lens for understanding God, humanity, and creation. Phillips et al. (2008) explain that a Christian worldview measures every idea against God’s self-revelation in Christ and the written Word. It is God-centered, coherent, and life-encompassing, treating the triune God as the foundation of all knowledge, meaning, and morality.'),
+  run('A worldview is the comprehensive framework of fundamental beliefs and assumptions through which a person interprets reality and orders daily life. Sire (2020) describes it as “a commitment, a fundamental orientation of the heart” that shapes how one understands the basic constitution of reality (p. 20). It functions like a set of lenses, coloring how one perceives origin, purpose, truth, and value. A Biblical Worldview is that framework formed and governed by the truth claims of Scripture, taking the Bible as the authoritative lens for understanding God, humanity, and creation. Félix-Jäger and Shin (2023) present the Christian worldview as a holistic, Spirit-formed vision of reality centered on God, in which faith reshapes every dimension of life rather than remaining a private belief. It is God-centered, coherent, and life-encompassing, treating the triune God as the foundation of all knowledge, meaning, and morality.'),
 ]);
-const part1Count = p([run('136 words', { italics: true })]);
+const part1Count = p([run('141 words', { italics: true })]);
 
 // ---- Part 2 ----
 const part2Heading = new Paragraph({
@@ -105,9 +105,9 @@ const refTitle = new Paragraph({
   children: [run('References', { bold: true })],
 });
 const ref1 = p([
-  run('Phillips, W. G., Brown, W. E., & Stonestreet, J. (2008). '),
-  run('Finding your worldview: Thinking Christianly about the world', { italics: true }),
-  run('. B&H Academic.'),
+  run('Félix-Jäger, S., & Shin, Y. (2023). '),
+  run('Renewing Christian worldview: A holistic approach for Spirit-filled Christians', { italics: true }),
+  run('. Baker Academic.'),
 ], { hanging: true });
 const ref2 = p([
   run('Sire, J. W. (2020). '),
