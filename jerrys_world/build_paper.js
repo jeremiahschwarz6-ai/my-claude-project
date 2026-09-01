@@ -39,6 +39,7 @@ const titlePage = [
     children: [run('The Biblical Worldview and Its Answers to Five Enduring Questions', { bold: true })],
   }),
   p([run('')], { align: AlignmentType.CENTER }),
+  p([run('[Your Full Name]')], { align: AlignmentType.CENTER }),
   p([run('Department of Religion, Liberty University')], { align: AlignmentType.CENTER }),
   p([run('RLGN 104: Christian Life and Biblical Worldview')], { align: AlignmentType.CENTER }),
   p([run('Professor')], { align: AlignmentType.CENTER }),
