@@ -7,15 +7,15 @@ const fs = require("fs");
 // ---- Content: the five worldview answers (these are what the word count covers) ----
 const body = {
   origin:
-    "The worldview examined in this paper is Hinduism, one of the world’s oldest and most internally diverse religious traditions, which resists any single account of creation (Flood, 1996). Rather than a decisive beginning, many Hindu texts present the cosmos as beginningless and cyclical, endlessly created, sustained, and dissolved across immense ages before arising once more (Klostermaier, 2007). Underlying and pervading this universe is Brahman, the ultimate and formless reality from which all things proceed. The Rig Veda’s celebrated “Hymn of Creation” even questions whether anyone can truly know how the world arose, treating origins as sacred mystery rather than settled fact (Doniger, 1981).",
+    "The worldview examined in this paper is Hinduism, one of the world’s oldest and most internally diverse religious traditions, which resists any single account of creation (Long, 2024). Rather than a decisive beginning, many Hindu texts present the cosmos as beginningless and cyclical, endlessly created, sustained, and dissolved across immense ages before arising once more (Medhananda, 2025). Underlying and pervading this universe is Brahman, the ultimate and formless reality from which all things proceed. The Rig Veda’s celebrated “Hymn of Creation” even questions whether anyone can truly know how the world arose, treating origins as sacred mystery rather than settled fact (Long, 2024).",
   identity:
-    "For Hinduism, the essence of a human being is the atman, an eternal, uncreated self that is ultimately one with Brahman—a unity captured in the Upanishadic teaching tat tvam asi, “that you are” (Flood, 1996). Because the same divine reality animates every living creature, humans are not categorically more valuable than other living things; this conviction supports the ethic of ahimsa, or non-harm, toward all life (Klostermaier, 2007). Human birth is nonetheless regarded as rare and precious, since only human beings possess the capacity to pursue liberation.",
+    "For Hinduism, the essence of a human being is the atman, an eternal, uncreated self that is ultimately one with Brahman—a unity captured in the Upanishadic teaching tat tvam asi, “that you are” (Long, 2024). Because all living beings share in the same essential self and are bound within the same cycle of rebirth, humans are not categorically more valuable than other creatures; this conviction supports the ethic of ahimsa, or non-harm, toward all life (Lehtonen, 2023). Human birth is nonetheless regarded as rare and precious, since only human beings possess the capacity to pursue liberation.",
   meaning:
-    "Human purpose in Hinduism centers on realizing one’s true nature and moving toward moksha, release from bondage and reunion with the divine. Classical tradition frames life around four legitimate aims, the purusharthas: dharma (duty), artha (prosperity), kama (pleasure), and moksha (liberation), with liberation understood as the highest (Klostermaier, 2007). To pursue these aims, individuals fulfill the duties proper to their stage and station in life and may follow paths of knowledge, devotion, or selfless action toward the ultimate goal (Flood, 1996).",
+    "Human purpose in Hinduism centers on realizing one’s true nature and moving toward moksha, release from bondage and reunion with the divine (Medhananda, 2025). Classical tradition frames life around four legitimate aims, the purusharthas: dharma (duty), artha (prosperity), kama (pleasure), and moksha (liberation), with liberation understood as the highest; to pursue them, individuals fulfill the duties proper to their stage and station in life and may follow paths of knowledge, devotion, or selfless action toward the ultimate goal (Long, 2024).",
   morality:
-    "Right and wrong are determined chiefly by dharma, the cosmic and moral order that sustains the universe and prescribes appropriate conduct. Dharma is contextual, varying according to one’s social role (varna) and stage of life (ashrama), and it is articulated in authoritative texts such as the Vedas, the Dharmashastras, and the Bhagavad Gita (Flood, 1996). Governing this moral order is the law of karma, by which every action bears fruit, shaping one’s circumstances both in this life and in the lives to come (Klostermaier, 2007).",
+    "Right and wrong are determined chiefly by dharma, the cosmic and moral order that sustains the universe and prescribes appropriate conduct. Dharma is contextual, varying according to one’s social role (varna) and stage of life (ashrama), and it is articulated in authoritative texts such as the Vedas, the Dharmashastras, and the Bhagavad Gita (Long, 2024). Governing this moral order is the law of karma, by which every action bears fruit, shaping one’s circumstances both in this life and in the lives to come (Lehtonen, 2023).",
   destiny:
-    "At death the atman does not perish but is reborn into a new existence, a process called samsara, the cycle of birth, death, and rebirth driven by accumulated karma (Klostermaier, 2007). One’s moral record determines the conditions of the next life, so death is understood as a transition rather than an end. This cycle continues until the self attains moksha and is finally freed from rebirth—whether understood as complete absorption into Brahman or as blissful communion with the divine, an interpretation that varies among the Hindu schools (Flood, 1996).",
+    "At death the atman does not perish but is reborn into a new existence, a process called samsara, the cycle of birth, death, and rebirth driven by accumulated karma (Lehtonen, 2023). One’s moral record determines the conditions of the next life, so death is understood as a transition rather than an end. This cycle continues until the self attains moksha and is finally freed from rebirth (Medhananda, 2025)—whether understood as complete absorption into Brahman or as blissful communion with the divine, an interpretation that varies among the Hindu schools (Long, 2024).",
 };
 
 // ---- Word count of the five answers ----
@@ -119,19 +119,19 @@ const references = [
     children: [t("References", { bold: true })],
   }),
   refPara([
-    t("Doniger, W. (Trans.). (1981). "),
-    t("The Rig Veda: An anthology", { italics: true }),
-    t(". Penguin Books."),
+    t("Lehtonen, T. (2023). Belief in karma: The belief-inducing power of a collection of ideas and practices with a long history. "),
+    t("Religions, 14", { italics: true }),
+    t("(1), Article 52. https://doi.org/10.3390/rel14010052"),
   ]),
   refPara([
-    t("Flood, G. D. (1996). "),
-    t("An introduction to Hinduism", { italics: true }),
+    t("Long, J. D. (2024). "),
+    t("Discovering Indian philosophy: An introduction to Hindu, Jain and Buddhist thought", { italics: true }),
+    t(". Bloomsbury Academic."),
+  ]),
+  refPara([
+    t("Medhananda, S. (2025). "),
+    t("Karma and rebirth in Hinduism", { italics: true }),
     t(". Cambridge University Press."),
-  ]),
-  refPara([
-    t("Klostermaier, K. K. (2007). "),
-    t("A survey of Hinduism", { italics: true }),
-    t(" (3rd ed.). State University of New York Press."),
   ]),
 ];
 
