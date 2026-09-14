@@ -10,7 +10,7 @@ Splendid Spoon, Inc. is a direct-to-consumer subscription service delivering ful
 
 Founder Nicole Centeno is a French Culinary Institute-trained chef and a former research biologist published in Nutrition and Metabolism (Splendid Spoon, n.d.). That pairing of culinary and scientific credibility shapes the brand. The idea came in 2012, while she was working at Condé Nast and pregnant with her first child, when she concluded that the barrier to healthy eating is not knowledge but time (Bliss, 2019). She attended culinary school while employed full time and ran pop-ups before launching in 2013 from a rented pizza kitchen in Brooklyn (Splendid Spoon, n.d.).
 
-The defining decision came in 2015. After grocers refused shelf space, the company abandoned wholesale for online subscription, turning a distribution failure into direct relationships and recurring revenue (Splendid Spoon, n.d.). A $3.26 million Series A followed in 2017 and a $12 million Series B in 2022, led by Nicoya with Danone Manifesto Ventures and Alexis Ohanian (Food Business News, 2022). In 2021 Centeno adopted a co-CEO structure with Elise Densborn, a former customer who joined as a consultant in 2018 (Stanford eCorner, 2023).
+The defining decision came in 2015. After grocers refused shelf space, the company abandoned wholesale for online subscription, turning a distribution failure into direct relationships and recurring revenue (Splendid Spoon, n.d.). A $3.26 million Series A followed in 2017 and a $12 million Series B in 2022, led by Nicoya with Danone Manifesto Ventures (Food Business News, 2022). In 2021 Centeno adopted a co-CEO structure with Elise Densborn, a former customer who joined as a consultant in 2018 (Stanford eCorner, 2023).
 
 The company remains small, roughly 11 to 50 employees in Brooklyn, women-owned and operated, with more than 20,000 subscribers reported at its Series B (PR Newswire, 2022). In January 2026 it acquired Mosaic Foods with backing from Gather Ventures, forming a vertically integrated business with over $190 million in cumulative revenue (Nosh, 2026). No customer demographics are published, but the price point, breakfast-and-lunch focus, and podcast placements indicate college-educated professional women roughly 28 to 45 in metropolitan areas, flexitarian rather than vegan.
 
@@ -33,23 +33,11 @@ Paid social and email are used most. The most efficient, though, appear to be po
 
 ## 5. Competition
 
-The closest competitors are Daily Harvest and Sakara Life, both New York-founded, plant-based, women-led subscription businesses. Daily Harvest scaled far larger, reaching a $1.1 billion valuation in 2021, but ships frozen food the customer must still prepare, so it does not match Splendid Spoon on convenience; its 2022 recall after roughly 470 illness reports, and the layoffs that followed, damaged category trust (U.S. Food and Drug Administration, 2022; Fortune, 2022). Sakara Life sells transformation rather than convenience, offering organic "food as medicine" on a fixed menu (Sternlicht, 2021). Splendid Spoon ranks first on convenience and dietary accessibility, midpoint on price, and third on scale (My Subscription Addiction, n.d.).
+The closest competitors are Daily Harvest and Sakara Life, both New York-founded, plant-based, women-led subscription businesses. Daily Harvest, launched by Rachel Drori in 2015, promises convenience through frozen produce at roughly $5.99 to $11.99 per item, against $9.99 to $13.49. That advantage is narrower than it appears, because Daily Harvest ships frozen food the customer must still blend or bake, while Splendid Spoon arrives ready to eat; the brands sell different amounts of labor, not merely different prices. Daily Harvest also scaled far larger, reaching a $1.1 billion valuation in 2021, but its 2022 recall after roughly 470 illness reports damaged trust across the category (U.S. Food and Drug Administration, 2022; Fortune, 2022).
 
+Sakara Life, founded in 2011 by Whitney Tingle and Danielle DuBoise, competes from the opposite end. It sells transformation rather than convenience, delivering organic "food as medicine" at roughly $26 to $34 per meal on a fixed, chef-curated menu, and reported about $150 million in revenue (Sternlicht, 2021). Where Splendid Spoon lets the customer choose among more than 50 items, Sakara removes that choice deliberately, treating the prescribed menu as part of the remedy.
 
-**Table 1**
-*Competitive Comparison of Splendid Spoon and Two Primary Competitors*
-
-| Comparison | Splendid Spoon | Daily Harvest | Sakara Life |
-|---|---|---|---|
-| Founded | 2013; Nicole Centeno | 2015; Rachel Drori | 2011; Tingle & DuBoise |
-| Promise | Effortless plant-based | Convenient frozen produce | Organic food as medicine |
-| Form | Ready to eat; heat 2 min | Frozen; blend or bake | Fresh, fully prepared |
-| Price | $9.99-$13.49/item | $5.99-$11.99/item | $26-$34/meal |
-| Menu | Choose from 50+ | A la carte | Fixed, chef-curated |
-| Key event | Bought Mosaic Foods, 2026 | 2022 recall; 15% layoffs | ~$150M revenue, 2021 |
-
-
-*Note. Compiled from BarBend (2026), Fortune (2022), My Subscription Addiction (n.d.), Nosh (2026), and Sternlicht (2021).*
+Splendid Spoon therefore occupies the middle: first on convenience and dietary accessibility (My Subscription Addiction, n.d.), midpoint on price, third on scale and prestige. The position is defensible but hard to communicate, because "in the middle" is difficult to say memorably.
 
 
 ## 6. SWOT Analysis
