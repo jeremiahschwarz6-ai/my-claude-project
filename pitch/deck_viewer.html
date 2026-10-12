@@ -1,0 +1,344 @@
+<title>Splendid Spoon Pitch</title>
+<style>
+/* Layout: one scrolling column of 16:9 slide previews, each with its speaker notes beneath. */
+:root{
+  --ink:#14281B; --deep:#1B4D23; --forest:#2F7336; --moss:#5C9E3F; --sage:#9BC47A;
+  --rust:#C8551F; --paper:#FFFFFF; --wash:#F1F5EE; --mute:#6E7B66;
+  --page:#F7F8F5; --panel:#FFFFFF; --line:#DDE4D8; --body:#2C382B; --faint:#6E7B66;
+  --display:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --page:#10160F; --panel:#171F16; --line:#2A3528; --body:#DCE4D8; --faint:#93A08C;
+  --wash:#1D261C; --paper:#171F16; --ink:#E8EEE4; --mute:#93A08C; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --page:#10160F; --panel:#171F16; --line:#2A3528; --body:#DCE4D8; --faint:#93A08C;
+  --wash:#1D261C; --paper:#171F16; --ink:#E8EEE4; --mute:#93A08C; color-scheme:dark;
+}
+body{background:var(--page);color:var(--body);font-family:var(--sans);}
+.wrap{max-width:1000px;margin:0 auto;padding-inline:16px;padding-block:28px 64px;}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--page);
+  border-bottom:1px solid var(--line);padding-block:14px;margin-bottom:28px;}
+header.top h1{font-family:var(--display);font-size:clamp(20px,3.4vw,27px);font-weight:600;
+  margin:0;color:var(--ink);letter-spacing:-.01em;}
+header.top p{margin:4px 0 0;font-size:13px;color:var(--faint);}
+.deckgrid{display:flex;flex-direction:column;gap:38px;}
+.item{display:flex;flex-direction:column;gap:10px;}
+.meta{display:flex;align-items:baseline;gap:10px;font-size:12px;color:var(--faint);
+  text-transform:uppercase;letter-spacing:.09em;font-weight:600;}
+.meta .n{font-variant-numeric:tabular-nums;color:var(--forest);}
+.notes{font-size:14px;line-height:1.55;color:var(--faint);border-left:2px solid var(--line);
+  padding-left:14px;max-width:68ch;}
+.notes b{color:var(--body);font-weight:600;}
+
+/* ---- the slide canvas ---- */
+.slide{container-type:inline-size;aspect-ratio:16/9;max-width:100%;border-radius:10px;
+  overflow:hidden;border:1px solid var(--line);position:relative;}
+.slide .pad{position:absolute;inset:0;padding:5.6cqw 5.6cqw 4cqw;display:flex;flex-direction:column;}
+.lightbg{background:#FFFFFF;color:#14281B;}
+.washbg{background:#F1F5EE;color:#14281B;}
+.darkbg{background:#1B4D23;color:#FFFFFF;}
+.eyebrow{font-size:1.15cqw;letter-spacing:.28em;font-weight:700;color:#9BC47A;margin-bottom:1.6cqw;}
+.h1{font-family:var(--display);font-size:5.2cqw;line-height:1.08;font-weight:600;
+  letter-spacing:-.015em;text-wrap:balance;margin:0;}
+.h2{font-family:var(--display);font-size:3.6cqw;line-height:1.15;font-weight:600;
+  letter-spacing:-.012em;margin:0 0 2.2cqw;text-wrap:balance;}
+.sub{font-size:1.75cqw;line-height:1.5;color:#9BC47A;margin-top:2.4cqw;max-width:74%;}
+.lead{font-size:1.72cqw;line-height:1.5;margin:0 0 2.4cqw;max-width:88%;}
+.foot{font-size:1.6cqw;line-height:1.45;font-weight:700;color:#1B4D23;margin-top:auto;}
+.foot.q{font-weight:400;font-style:italic;color:#6E7B66;}
+.src{font-size:1.15cqw;color:#6E7B66;margin-top:1.2cqw;}
+
+.cards{display:grid;gap:1.5cqw;}
+.c4{grid-template-columns:repeat(4,1fr);} .c3{grid-template-columns:repeat(3,1fr);}
+.c2{grid-template-columns:1fr 1fr;}
+.card{background:#F1F5EE;border-radius:.9cqw;padding:1.7cqw 1.8cqw;}
+.card.on{background:#FFFFFF;}
+.card.dark{background:#1B4D23;color:#FFFFFF;}
+.num{font-family:var(--display);font-size:4.2cqw;font-weight:600;color:#2F7336;line-height:1;
+  display:block;margin-bottom:.9cqw;letter-spacing:-.02em;}
+.num.r{color:#C8551F;} .num.w{color:#FFFFFF;}
+.lab{font-size:1.32cqw;line-height:1.4;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1.9cqw;flex:1;min-height:0;}
+.panel{background:#F1F5EE;border-radius:1cqw;padding:2.1cqw 2.2cqw;display:flex;
+  flex-direction:column;gap:1.1cqw;}
+.panel.dark{background:#1B4D23;color:#FFFFFF;}
+.plabel{font-size:1.15cqw;letter-spacing:.2em;font-weight:700;}
+.pbig{font-family:var(--display);font-size:3.5cqw;font-weight:600;line-height:1;letter-spacing:-.02em;}
+.ptext{font-size:1.4cqw;line-height:1.5;}
+.pkick{font-size:1.4cqw;font-weight:700;margin-top:auto;}
+
+.stack{display:flex;flex-direction:column;gap:1.1cqw;}
+.srow{display:flex;align-items:center;gap:1.6cqw;background:#FFFFFF;border-radius:.8cqw;
+  padding:1.2cqw 1.6cqw;}
+.srow .sn{font-family:var(--display);font-size:2.9cqw;font-weight:600;color:#2F7336;
+  min-width:7.2cqw;line-height:1;letter-spacing:-.02em;}
+.srow .sl{font-size:1.32cqw;line-height:1.4;}
+
+.tiltrow{display:flex;align-items:center;gap:1.8cqw;background:#F1F5EE;border-radius:.8cqw;
+  padding:1.5cqw 1.8cqw;}
+.tiltrow.win{background:#1B4D23;color:#FFFFFF;}
+.tiltrow .mk{font-size:2.3cqw;font-weight:700;color:#6E7B66;width:2.4cqw;text-align:center;}
+.tiltrow.win .mk{color:#9BC47A;}
+.tiltrow .tt{font-size:1.72cqw;font-weight:700;min-width:17cqw;}
+.tiltrow .td{font-size:1.32cqw;line-height:1.45;}
+
+.bars{display:flex;flex-direction:column;gap:1.5cqw;flex:1;justify-content:center;}
+.bar{display:flex;align-items:center;gap:1.3cqw;}
+.bar .bl{font-size:1.4cqw;min-width:9cqw;}
+.bar .track{flex:1;height:2.2cqw;background:#F1F5EE;border-radius:.3cqw;overflow:hidden;}
+.bar .track i{display:block;height:100%;background:#2F7336;border-radius:.3cqw;}
+.bar .bv{font-size:1.4cqw;font-weight:700;min-width:4cqw;font-variant-numeric:tabular-nums;}
+
+.ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1cqw;}
+.g{display:flex;gap:1.2cqw;align-items:flex-start;border-radius:.7cqw;padding:1.1cqw 1.3cqw;}
+.g .gr{font-family:var(--display);font-size:2.9cqw;font-weight:600;line-height:1;min-width:2.6cqw;}
+.g .gp{font-size:1.3cqw;font-weight:700;display:block;margin-bottom:.35cqw;}
+.g .gn{font-size:1.08cqw;line-height:1.35;display:block;}
+.g.a{background:#1B4D23;color:#FFFFFF;} .g.b{background:#2F7336;color:#FFFFFF;}
+.g.c{background:#5C9E3F;color:#14281B;} .g.d{background:#9BC47A;color:#14281B;}
+.g.f{background:#C8551F;color:#FFFFFF;}
+
+.olist{display:flex;flex-direction:column;gap:1.1cqw;}
+.oitem{display:flex;gap:1.2cqw;align-items:flex-start;}
+.oitem .dot{width:2.1cqw;height:2.1cqw;border-radius:50%;background:#1B4D23;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:1.15cqw;font-weight:700;flex:none;}
+.oitem p{margin:0;font-size:1.36cqw;line-height:1.45;}
+
+.phase{display:flex;gap:2cqw;align-items:center;background:#FFFFFF;border-radius:.7cqw;
+  padding:1.25cqw 1.7cqw;}
+.phase.last{background:#1B4D23;color:#FFFFFF;}
+.phase .pt{font-family:var(--display);font-size:1.85cqw;font-weight:600;min-width:12cqw;}
+.phase .pi{font-size:1.32cqw;line-height:1.4;}
+
+.refs{font-size:1.28cqw;line-height:1.85;}
+.refs div{padding-left:2.4cqw;text-indent:-2.4cqw;margin-bottom:.5cqw;}
+.refs i{font-style:italic;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.8cqw;flex:1;min-height:0;}
+.colcard{background:#FFFFFF;border-radius:1cqw;padding:2cqw 2.1cqw;display:flex;
+  flex-direction:column;gap:1cqw;}
+.colcard h4{font-family:var(--display);font-size:2.9cqw;margin:0;color:#1B4D23;font-weight:600;}
+.colcard .reach{font-size:1.2cqw;font-weight:700;color:#2F7336;letter-spacing:.06em;}
+.colcard .pq{font-size:1.4cqw;font-style:italic;}
+.colcard .pb{font-size:1.28cqw;line-height:1.5;}
+.colcard .po{font-size:1.22cqw;font-weight:700;color:#1B4D23;margin-top:auto;line-height:1.45;}
+@media (max-width:560px){ .notes{font-size:13px;} }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>Splendid Spoon — Social Media Strategy</h1>
+    <p>Pitch deck preview · 17 slides · speaker notes under each</p>
+  </header>
+  <div class="deckgrid" id="deck"></div>
+</div>
+
+<script>
+const S = [
+{n:1,k:"Open",cls:"darkbg",notes:"Open confident and slow. The whole pitch hangs on this phrase: you are renting your customers from Meta, and rent goes up every year.",
+ html:`<div class="eyebrow">SPLENDID SPOON</div><div style="margin-top:auto"></div>
+ <h1 class="h1">Stop renting your customers</h1>
+ <p class="sub">A social media strategy built on one idea: own the weekday lunch.<br>STCO 348 · Strategic Communication</p>`},
+
+{n:2,k:"Situation",cls:"lightbg",notes:"Name the problem before any solution. The zero is the punchline — they have no compounding owned discovery.",
+ html:`<h2 class="h2">The engine that built you is the risk that limits you</h2>
+ <p class="lead">Splendid Spoon's growth has run on paid social. That works until it doesn't — every competitor can outbid you for the same woman, on the same platform, on the same afternoon.</p>
+ <div class="cards c3" style="margin-top:auto;margin-bottom:1cqw">
+  <div class="card"><span class="num">71%</span><span class="lab">of U.S. adults use Facebook — where the paid engine runs</span></div>
+  <div class="card"><span class="num r">0</span><span class="lab">owned channels compounding discovery for you today</span></div>
+  <div class="card dark"><span class="lab" style="font-style:italic;font-size:1.4cqw">"You don't own the audience. You lease it by the impression, and the lease renews at market rate."</span></div>
+ </div>`},
+
+{n:3,k:"Situation",cls:"washbg",notes:"Keep this fast — thirty seconds. The founder's dual credential (chef plus biologist) matters later for content credibility.",
+ html:`<h2 class="h2">Who we're working with</h2>
+ <p class="lead">Splendid Spoon delivers fully prepared, 100% plant-based meals nationwide. Founded in Brooklyn in 2013 by Nicole Centeno — a French Culinary Institute–trained chef and former research biologist.</p>
+ <div class="cards c4">
+  <div class="card on"><span class="num">2013</span><span class="lab">Founded in a rented Brooklyn pizza kitchen</span></div>
+  <div class="card on"><span class="num">$190M</span><span class="lab">Cumulative D2C revenue after the Mosaic merger</span></div>
+  <div class="card on"><span class="num">200+</span><span class="lab">Plant-based products across chilled and frozen</span></div>
+  <div class="card on"><span class="num">2 min</span><span class="lab">From refrigerator to a finished meal</span></div>
+ </div>
+ <p class="foot">January 2026: acquired Mosaic Foods, adding in-house manufacturing — the company can now make its own food.</p>`},
+
+{n:4,k:"Situation",cls:"lightbg",notes:"This is the strategic pivot of the whole pitch: stop selling the diet, start selling the time.",
+ html:`<h2 class="h2">Two trends pulling in opposite directions</h2>
+ <div class="row2">
+  <div class="panel"><div class="plabel" style="color:#C8551F">WORKING AGAINST US</div>
+   <div class="pbig" style="color:#C8551F">− 4% then − 2%</div>
+   <div class="ptext">U.S. plant-based sales declined two years running, to $7.9 billion, as retailers cut shelf assortment (Good Food Institute, 2026).</div>
+   <div class="pkick">The category tailwind has reversed.</div></div>
+  <div class="panel dark"><div class="plabel" style="color:#9BC47A">WORKING FOR US</div>
+   <div class="pbig">$13.7B → $30.7B</div>
+   <div class="ptext">Prepared meal delivery grows at a 12.2% compound rate through 2033 (Coherent Market Insights, 2026).</div>
+   <div class="pkick" style="color:#9BC47A">Sell convenience, not a diet.</div></div>
+ </div>
+ <p class="foot q">Strategic read: lead with time saved. Plant-based is how the food is made, not why she buys it.</p>`},
+
+{n:5,k:"Audience",cls:"washbg",notes:"Land the last line and pause. It is the insight the entire strategy rests on.",
+ html:`<h2 class="h2">One audience, chosen on purpose</h2>
+ <div class="row2">
+  <div class="panel dark"><div class="plabel" style="color:#9BC47A">THE TARGET PUBLIC</div>
+   <div class="pbig" style="font-size:2.9cqw">Time-scarce working mothers</div>
+   <div class="ptext" style="color:#9BC47A">Ages 30–45 · dual-income metro households · $100K+ · flexitarian, not vegan</div></div>
+  <div class="stack">
+   <div class="srow"><span class="sn">73.9%</span><span class="sl">of U.S. mothers are in the labor force (BLS, 2026)</span></div>
+   <div class="srow"><span class="sn">43 min</span><span class="sl">a day is all Americans now spend on food prep and cleanup</span></div>
+   <div class="srow"><span class="sn">58%</span><span class="sl">of meal-delivery subscribers are women</span></div>
+  </div>
+ </div>
+ <p class="foot" style="font-family:var(--display);font-size:2cqw">She is not short on nutrition knowledge. She is short on minutes.</p>`},
+
+{n:6,k:"Audience",cls:"darkbg",notes:"Slow down here. Two beats of silence after the title line.",
+ html:`<div class="eyebrow">THE INSIGHT</div><div style="margin-top:auto"></div>
+ <h1 class="h1">The barrier isn't knowledge. It's minutes.</h1>
+ <p class="sub">Every competitor sells aspiration. We sell relief — permission to stop negotiating with yourself about lunch.</p>`},
+
+{n:7,k:"Strategy",cls:"lightbg",notes:"Show the two rejected territories first — it proves the choice was reasoned, not convenient.",
+ html:`<h2 class="h2">The content tilt</h2>
+ <p class="lead" style="font-style:italic;color:#6E7B66;font-size:1.5cqw">Joe Pulizzi defines the content tilt as "that area of little to no competition … that actually gives you a chance to break through the noise" (Pulizzi, n.d.).</p>
+ <div class="stack" style="gap:1.2cqw">
+  <div class="tiltrow"><span class="mk">✕</span><span class="tt">Plant-based recipes</span><span class="td">Saturated. Every food brand and blogger is already there.</span></div>
+  <div class="tiltrow"><span class="mk">✕</span><span class="tt">Weight loss</span><span class="td">Crowded, medicalized, and a promise the product can't make.</span></div>
+  <div class="tiltrow win"><span class="mk">✓</span><span class="tt">The zero-prep weekday meal</span><span class="td">Owned at breakfast and lunch, when time is shortest and willpower is lowest. Nobody is competing here.</span></div>
+ </div>
+ <p class="foot">Through-line: "One plant-based choice a day." A habit, not a conversion.</p>`},
+
+{n:8,k:"Strategy",cls:"washbg",notes:"Aaker gives the persona academic grounding — say the framework name out loud, it is a course concept.",
+ html:`<h2 class="h2">How the brand should sound</h2>
+ <div class="row2">
+  <div class="panel dark" style="justify-content:center">
+   <div class="pbig" style="font-size:2.3cqw;line-height:1.3">The calm, capable friend who has already solved the problem you are still worrying about.</div></div>
+  <div class="stack">
+   <div class="ptext" style="margin-bottom:.6cqw">On Aaker's (1997) dimensions of brand personality, Splendid Spoon indexes on sincerity and competence — and deliberately not on excitement.</div>
+   <div class="srow"><span class="sl" style="font-weight:700;min-width:9cqw;color:#6E7B66">Leads with</span><span class="sl">relief — never guilt</span></div>
+   <div class="srow"><span class="sl" style="font-weight:700;min-width:9cqw;color:#6E7B66">Claims are</span><span class="sl">concrete: calories, protein, allergens</span></div>
+   <div class="srow"><span class="sl" style="font-weight:700;min-width:9cqw;color:#6E7B66">Never</span><span class="sl">a wellness authority or a coach</span></div>
+  </div>
+ </div>
+ <p class="foot q">Specificity is the argument. Vague wellness language is what the competition already sounds like.</p>`},
+
+{n:9,k:"Audit",cls:"lightbg",notes:"Point at YouTube's bar. This chart sets up the scorecard on the next slide.",
+ html:`<h2 class="h2">Where her attention actually is</h2>
+ <div class="two" style="grid-template-columns:1.5fr 1fr">
+  <div style="display:flex;flex-direction:column">
+   <div class="bars">
+    <div class="bar"><span class="bl">YouTube</span><div class="track"><i style="width:84%"></i></div><span class="bv">84%</span></div>
+    <div class="bar"><span class="bl">Facebook</span><div class="track"><i style="width:71%"></i></div><span class="bv">71%</span></div>
+    <div class="bar"><span class="bl">Instagram</span><div class="track"><i style="width:50%"></i></div><span class="bv">50%</span></div>
+    <div class="bar"><span class="bl">TikTok</span><div class="track"><i style="width:37%"></i></div><span class="bv">37%</span></div>
+    <div class="bar"><span class="bl">Reddit</span><div class="track"><i style="width:26%"></i></div><span class="bv">26%</span></div>
+   </div>
+   <div class="src">Share of U.S. adults who use each platform · Pew Research Center, 2025</div>
+  </div>
+  <div class="panel" style="justify-content:center">
+   <div class="ptext" style="font-size:1.5cqw">The two platforms with the widest reach — YouTube at 84% — are the two where Splendid Spoon has no presence at all.</div>
+   <div class="ptext" style="color:#6E7B66;font-size:1.25cqw">Reddit has grown from 18% to 26% in four years, and 77% of people now add "Reddit" to a Google search for recommendations.</div>
+  </div>
+ </div>`},
+
+{n:10,k:"Audit",cls:"washbg",notes:"Walk the grid left to right. End on the F. Do not rush past it — <b>this is the moment the pitch turns.</b>",
+ html:`<h2 class="h2">Where Splendid Spoon actually is</h2>
+ <p class="lead" style="font-size:1.5cqw">I graded all nine channels against the research. Three are excellent. One is a hole.</p>
+ <div class="ggrid">
+  <div class="g a"><span class="gr">A</span><span><span class="gp">Instagram</span><span class="gn">106,000 followers; strongest owned channel</span></span></div>
+  <div class="g a"><span class="gr">A</span><span><span class="gp">Blog — The Spoonful</span><span class="gn">Recipes and meal plans that rank in search</span></span></div>
+  <div class="g a"><span class="gr">A</span><span><span class="gp">Facebook</span><span class="gn">48,900 likes; precise paid targeting</span></span></div>
+  <div class="g b"><span class="gr">B</span><span><span class="gp">Podcasts</span><span class="gn">~22 sponsorships a year, all rented</span></span></div>
+  <div class="g c"><span class="gr">C</span><span><span class="gp">LinkedIn</span><span class="gn">4,200 followers; used as a notice board</span></span></div>
+  <div class="g d"><span class="gr">D</span><span><span class="gp">TikTok</span><span class="gn">3,480 followers — 3% of Instagram</span></span></div>
+  <div class="g d"><span class="gr">D</span><span><span class="gp">YouTube</span><span class="gn">No channel. 84% of adults unreached</span></span></div>
+  <div class="g d"><span class="gr">D</span><span><span class="gp">Reddit</span><span class="gn">No account where trust is being built</span></span></div>
+  <div class="g f"><span class="gr">F</span><span><span class="gp">Pinterest</span><span class="gn">Absent from its best-matched platform</span></span></div>
+ </div>
+ <p class="foot q" style="font-size:1.2cqw">Grades reflect fit against the audience research — not effort or follower count.</p>`},
+
+{n:11,k:"Recommendation",cls:"darkbg",notes:"Transition line. Short and declarative, then straight into Pinterest.",
+ html:`<div class="eyebrow">THE RECOMMENDATION</div><div style="margin-top:auto"></div>
+ <h1 class="h1">Stop renting attention. Start owning discovery.</h1>
+ <p class="sub">Three moves, in priority order — and one deliberate retreat.</p>`},
+
+{n:12,k:"Recommendation",cls:"lightbg",notes:"The strongest slide in the deck. A pin keeps working for months; an Instagram post is dead in a day.",
+ html:`<h2 class="h2">Priority 1 — Pinterest</h2>
+ <p class="lead" style="font-family:var(--display);font-style:italic;font-size:1.9cqw;color:#1B4D23">"Your next three weeks of lunches, planned before you are hungry."</p>
+ <div class="cards c4" style="margin-bottom:1.6cqw">
+  <div class="card"><span class="num">93%</span><span class="lab">of Pinterest users are there to plan a purchase</span></div>
+  <div class="card"><span class="num">86%</span><span class="lab">use it while they are grocery shopping</span></div>
+  <div class="card"><span class="num">1–3 mo</span><span class="lab">ahead is when they save — planning, not reacting</span></div>
+  <div class="card"><span class="num">#1</span><span class="lab">Food is the platform's single largest category</span></div>
+ </div>
+ <div class="row2" style="flex:0">
+  <div class="panel"><div class="plabel" style="color:#6E7B66">EXECUTION</div>
+   <div class="ptext">Vertical recipe and meal-plan pins. Boards for Desk Lunch, 7-Day Plant-Based Plan, One Choice a Day. Pin 30–60 days ahead of the season. Link to plan pages, never the homepage.</div></div>
+  <div class="panel dark"><div class="plabel" style="color:#9BC47A">OBJECTIVES</div>
+   <div class="ptext">Account live within 60 days · 25 pins a month · 50,000 monthly impressions and 1,500 referred sessions by month six</div></div>
+ </div>
+ <div class="src">Searchlab, 2026</div>`},
+
+{n:13,k:"Recommendation",cls:"washbg",notes:"Keep both to about twenty seconds each. The Reddit point about answering complaints in public is the memorable one.",
+ html:`<h2 class="h2">Priorities 2 and 3 — YouTube and Reddit</h2>
+ <div class="two">
+  <div class="colcard"><h4>YouTube</h4><div class="reach">84% OF U.S. ADULTS</div>
+   <div class="pq">"Watch exactly how two minutes becomes lunch."</div>
+   <div class="pb">Food is visual and preparation is demonstrable — a two-minute meal is already a two-minute video. Launch a channel; repurpose Reels as Shorts; run a founder-led nutrition series on her chef-and-biologist credential.</div>
+   <div class="po">Live in 90 days · 2 videos a week · 10,000 subscribers in year one</div></div>
+  <div class="colcard"><h4>Reddit</h4><div class="reach">77% ADD "REDDIT" TO SEARCHES</div>
+   <div class="pq">"Straight answers where marketing isn't trusted."</div>
+   <div class="pb">Claim a verified account and host a founder AMA. Answer the delivery and taste complaints in public rather than deleting them — 64% of users prefer transparency to promotion, and founder AMAs draw four times the engagement.</div>
+   <div class="po">Account in 30 days · one AMA in six months · reply to every mention inside 48 hours</div></div>
+ </div>`},
+
+{n:14,k:"Recommendation",cls:"lightbg",notes:"Deliberately counterintuitive — recommending less effort somewhere proves the rest is prioritization, not a wish list.",
+ html:`<h2 class="h2">And one thing to stop chasing</h2>
+ <div class="two">
+  <div class="panel"><div class="plabel" style="color:#C8551F">TIKTOK — HOLD AT MAINTENANCE</div>
+   <div class="pbig" style="color:#C8551F;font-size:4cqw">3,480</div>
+   <div class="ptext">followers — about 3% of the Instagram audience, after real effort.</div>
+   <div class="ptext" style="color:#6E7B66">TikTok's heaviest users are the youngest adults — precisely the people least able to afford a $9.99–$13.49 meal.</div></div>
+  <div style="display:flex;flex-direction:column;gap:1.3cqw">
+   <div style="font-family:var(--display);font-size:2cqw;font-weight:600;color:#1B4D23">What that buys us</div>
+   <div class="olist">
+    <div class="oitem"><span class="dot">1</span><p>Repurpose three Reels a week at near-zero marginal cost — keep the account alive, stop funding original production for it.</p></div>
+    <div class="oitem"><span class="dot">2</span><p>Redirect that production time into Pinterest and YouTube, where the audience and the intent actually are.</p></div>
+    <div class="oitem"><span class="dot">3</span><p>Formally reassess in two quarters rather than quietly drifting.</p></div>
+   </div>
+  </div>
+ </div>
+ <p class="foot">A strategy that only adds is a wish list. Prioritizing means saying what we stop.</p>`},
+
+{n:15,k:"Close",cls:"washbg",notes:"The closing line gets a laugh and signals confidence. Objectives that cannot fail are not objectives.",
+ html:`<h2 class="h2">What the first year looks like</h2>
+ <div class="stack" style="gap:1.15cqw">
+  <div class="phase"><span class="pt">First 30 days</span><span class="pi">Claim Reddit · Build Pinterest boards · Shift 20% of paid budget to win-back</span></div>
+  <div class="phase"><span class="pt">By day 60</span><span class="pi">Pinterest live, 25 pins a month · Blog to four search-intent posts a month</span></div>
+  <div class="phase"><span class="pt">By day 90</span><span class="pi">YouTube channel live · 2 videos a week · TikTok down to repurposed only</span></div>
+  <div class="phase last"><span class="pt">Month 12</span><span class="pi">10,000 YouTube subscribers · +30% organic sessions · flat acquisition cost</span></div>
+ </div>
+ <p class="foot q">Every number here is falsifiable. That is the point — you can fire me on the metrics.</p>`},
+
+{n:16,k:"Close",cls:"darkbg",notes:"End on the audience you are renting. Stop talking. Invite questions.",
+ html:`<div class="eyebrow">THE ASK</div><div style="margin-top:auto"></div>
+ <h1 class="h1">Own the lunch hour before someone else does</h1>
+ <p class="sub">Pinterest in 60 days. YouTube in 90. One plant-based choice a day — and a brand that finally owns the audience it has been renting.</p>`},
+
+{n:17,k:"Close",cls:"lightbg",notes:"Do not read this slide aloud. It is on screen for APA compliance.",
+ html:`<h2 class="h2">References</h2>
+ <div class="refs">
+  <div>Aaker, J. L. (1997). Dimensions of brand personality. <i>Journal of Marketing Research, 34</i>(3), 347–356.</div>
+  <div>Coherent Market Insights. (2026). <i>Prepared meal delivery market size and YoY growth rate, 2033.</i></div>
+  <div>Good Food Institute. (2026). <i>U.S. retail market insights for the plant-based industry.</i></div>
+  <div>Pew Research Center. (2025, November 20). <i>Americans' social media use 2025.</i></div>
+  <div>Pulizzi, J. (n.d.). <i>What is a content tilt?</i> The Tilt.</div>
+  <div>Searchlab. (2026). <i>Pinterest statistics 2026: 80+ facts on reach, shopping and ads.</i></div>
+  <div>Sprout Social. (2026). <i>Reddit statistics in 2026 and tactics to grow your brand.</i></div>
+  <div>U.S. Bureau of Labor Statistics. (2026). <i>Labor force participation rate was 73.9 percent for mothers and 93.7 percent for fathers in 2025.</i></div>
+ </div>`},
+];
+
+document.getElementById("deck").innerHTML = S.map(s => `
+  <section class="item">
+    <div class="meta"><span class="n">${String(s.n).padStart(2,"0")}</span><span>${s.k}</span></div>
+    <div class="slide ${s.cls}"><div class="pad">${s.html}</div></div>
+    <div class="notes"><b>Speaker notes.</b> ${s.notes}</div>
+  </section>`).join("");
+</script>
