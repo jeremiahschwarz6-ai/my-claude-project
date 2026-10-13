@@ -1,0 +1,96 @@
+<title>Pitch Cue Card</title>
+<style>
+/* Layout: one scannable column of slide cues, sized to read at arm's length while talking. */
+:root{
+  --bg:#0E1410; --surface:#18211A; --edge:#273224; --fg:#E9EFE6; --dim:#93A390;
+  --accent:#8FD06A; --hot:#FF8A4C; --sans:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Newsreader",Georgia,serif; color-scheme:dark;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);}
+.wrap{max-width:720px;margin:0 auto;padding-inline:18px;padding-block:22px 70px;}
+h1{font-family:var(--serif);font-size:clamp(22px,5vw,30px);font-weight:600;margin:0 0 4px;letter-spacing:-.01em;}
+.sub{color:var(--dim);font-size:14px;margin:0 0 20px;}
+.clock{position:sticky;top:env(safe-area-inset-top,0px);z-index:3;background:var(--bg);
+  border-bottom:1px solid var(--edge);padding-block:10px;margin-bottom:18px;
+  display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--dim);
+  font-variant-numeric:tabular-nums;}
+.clock b{color:var(--accent);font-weight:700;}
+.rows{display:flex;flex-direction:column;gap:9px;}
+.r{display:grid;grid-template-columns:40px 1fr;gap:14px;background:var(--surface);
+  border:1px solid var(--edge);border-radius:10px;padding:13px 15px;align-items:start;}
+.r.turn{border-color:var(--hot);}
+.n{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--accent);
+  line-height:1.15;font-variant-numeric:tabular-nums;}
+.r.turn .n{color:var(--hot);}
+.cue{font-size:17px;line-height:1.38;font-weight:600;margin:0;}
+.fact{font-size:14px;line-height:1.45;color:var(--dim);margin:5px 0 0;}
+.beat{display:inline-block;font-size:11px;letter-spacing:.14em;font-weight:700;
+  color:var(--hot);border:1px solid var(--hot);border-radius:20px;padding:2px 9px;margin-top:7px;}
+.tip{margin-top:26px;border-top:1px solid var(--edge);padding-top:16px;color:var(--dim);
+  font-size:14px;line-height:1.6;}
+.tip b{color:var(--fg);}
+</style>
+<div class="wrap">
+  <h1>Pitch cue card</h1>
+  <p class="sub">One line per slide. Say the bold line, drop the number, move on.</p>
+  <div class="clock">
+    <span><b>0:00</b> open</span><span><b>2:25</b> audience</span>
+    <span><b>3:45</b> the audit</span><span><b>4:45</b> Pinterest</span>
+    <span><b>6:25</b> roadmap</span><span><b>7:10</b> close</span>
+  </div>
+  <div class="rows">
+    <div class="r"><div class="n">01</div><div>
+      <p class="cue">"Splendid Spoon doesn't have a marketing problem. It has a landlord problem."</p>
+      <p class="fact">Say your name. Then: you rent every customer from Meta.</p></div></div>
+    <div class="r"><div class="n">02</div><div>
+      <p class="cue">"Every competitor can outbid you for the same woman, on the same afternoon."</p>
+      <p class="fact">71% on Facebook · point at the <b>zero</b> owned channels.</p></div></div>
+    <div class="r"><div class="n">03</div><div>
+      <p class="cue">"Chef and research biologist. That combination matters later."</p>
+      <p class="fact">2013 Brooklyn · $190M · 200+ products · now makes its own food. Fast.</p></div></div>
+    <div class="r"><div class="n">04</div><div>
+      <p class="cue">"Stop selling the diet. Sell the time."</p>
+      <p class="fact">Plant-based down 4% then 2%. Meal delivery $13.7B → $30.7B.</p></div></div>
+    <div class="r"><div class="n">05</div><div>
+      <p class="cue">"Working mothers, 30 to 45. Flexitarian, not vegan."</p>
+      <p class="fact">73.9% of mothers work · 43 minutes a day on food.</p></div></div>
+    <div class="r"><div class="n">06</div><div>
+      <p class="cue">"She is not short on nutrition knowledge. She is short on minutes."</p>
+      <p class="fact">Everyone sells aspiration. We sell relief.<span class="beat">PAUSE TWO BEATS</span></p></div></div>
+    <div class="r"><div class="n">07</div><div>
+      <p class="cue">"Your tilt is the zero-prep weekday meal. Nobody owns it."</p>
+      <p class="fact">Reject recipes (saturated) and weight loss (can't promise it) first.</p></div></div>
+    <div class="r"><div class="n">08</div><div>
+      <p class="cue">"The calm, capable friend who already solved the problem."</p>
+      <p class="fact">Aaker: sincerity and competence. Lead with relief, never guilt.</p></div></div>
+    <div class="r"><div class="n">09</div><div>
+      <p class="cue">"YouTube reaches 84% of U.S. adults."</p>
+      <p class="fact">Facebook 71 · Instagram 50. Point at the YouTube bar.</p></div></div>
+    <div class="r turn"><div class="n">10</div><div>
+      <p class="cue">"Pinterest. An F. Not because you're doing it badly — because you aren't there."</p>
+      <p class="fact">Walk the grid: three A's, a B, a C, three D's. Then stop on the F.<span class="beat">THE TURN — LET IT SIT</span></p></div></div>
+    <div class="r"><div class="n">11</div><div>
+      <p class="cue">"Stop renting attention. Start owning discovery."</p>
+      <p class="fact">Three moves and one retreat. Keep it short, move on.</p></div></div>
+    <div class="r"><div class="n">12</div><div>
+      <p class="cue">"An Instagram post is dead in a day. A pin keeps working for months."</p>
+      <p class="fact">93% plan purchases · 86% while grocery shopping · food is #1 category.</p></div></div>
+    <div class="r"><div class="n">13</div><div>
+      <p class="cue">"Answer the complaints in public instead of deleting them."</p>
+      <p class="fact">YouTube: a 2-minute meal is a 2-minute video. Reddit: 77% add "Reddit" to searches.</p></div></div>
+    <div class="r"><div class="n">14</div><div>
+      <p class="cue">"A strategy that only adds things is a wish list."</p>
+      <p class="fact">TikTok 3,480 followers = 3% of Instagram. Hold at maintenance.</p></div></div>
+    <div class="r"><div class="n">15</div><div>
+      <p class="cue">"Every one of those numbers is falsifiable. You can fire me on the metrics."</p>
+      <p class="fact">30 days Reddit · 60 Pinterest · 90 YouTube · month 12 flat CAC.</p></div></div>
+    <div class="r"><div class="n">16</div><div>
+      <p class="cue">"Own the lunch hour before somebody else takes it."</p>
+      <p class="fact">Then: "Thank you." Hold eye contact two seconds. Stop recording.</p></div></div>
+  </div>
+  <div class="tip">
+    <b>If you fumble, keep going.</b> Don't restart — a complete imperfect take beats three abandoned perfect ones.<br>
+    <b>If you're running long</b>, compress slides 3 and 8. They carry the least argument.<br>
+    <b>Camera on, look at the lens.</b> Slide 17 is references — don't read it aloud.
+  </div>
+</div>
