@@ -101,7 +101,7 @@ let s = pres.addSlide({ masterName: "DARK", sectionTitle: "Open" });
 txt(s, "SPLENDID SPOON", { x: 0.9, y: 1.5, w: 11.5, h: 0.4, margin: 0,
   fontSize: 15, color: SAGE, charSpacing: 4, bold: true });
 s.addText("Stop renting your customers", { placeholder: "title" });
-s.addText("A social media strategy built on one idea: own the weekday lunch.\nSTCO 348  ·  Strategic Communication", { placeholder: "body" });
+s.addText("A social media strategy built on one idea: own the weekday lunch.\nJeremiah Schwarz  ·  STCO 348, Strategic Communication", { placeholder: "body" });
 s.addNotes("Open confident and slow. The whole pitch hangs on this phrase: you are renting your customers from Meta, and rent goes up every year.");
 
 /* ================= 2. PROBLEM ================= */

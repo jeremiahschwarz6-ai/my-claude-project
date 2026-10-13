@@ -19,7 +19,7 @@ Open on camera, not on the slide.
 > Right now, almost every new customer you get, you rent — from Meta, by the
 > impression, at whatever the auction costs that day. Over the last few weeks I've
 > looked at your business, your customer, and all nine of your channels. Today I want
-> to show you how to stop renting and start owning. My name is ____, and this is
+> to show you how to stop renting and start owning. My name is Jeremiah Schwarz, and this is
 > your social media strategy."
 
 *Delivery: slow, level, no rush. This is the thesis of the entire pitch.*
