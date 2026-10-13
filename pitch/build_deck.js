@@ -239,24 +239,22 @@ s.addNotes("Aaker gives the persona academic grounding — say the framework nam
 pres.addSection({ title: "Audit" });
 s = pres.addSlide({ masterName: "LIGHT", sectionTitle: "Audit" });
 s.addText("Where her attention actually is", { placeholder: "title" });
-s.addChart(pres.ChartType.bar, [{
-  name: "Share of U.S. adults who use the platform",
-  labels: ["YouTube", "Facebook", "Instagram", "TikTok", "Reddit"],
-  values: [84, 71, 50, 37, 26],
-}], {
-  x: 0.75, y: 1.5, w: 7.6, h: 4.6,
-  barDir: "bar", barGapWidthPct: 45,
-  chartColors: [FOREST],
-  showValue: true, dataLabelPosition: "outEnd", dataLabelFormatCode: '0"%"',
-  dataLabelColor: INK, dataLabelFontSize: 13, dataLabelFontFace: "+mn-lt",
-  catAxisLabelColor: INK, catAxisLabelFontSize: 13, catAxisLabelFontFace: "+mn-lt",
-  valAxisHidden: true, valAxisMaxVal: 100,
-  catGridLine: { style: "none" }, valGridLine: { style: "none" },
-  catAxisLineShow: false, valAxisLineShow: false,
-  showLegend: false, showTitle: false,
-  plotArea: { fill: { color: PAPER } },
+// Horizontal bars drawn as shapes — avoids pptxgenjs chart XML that PowerPoint rejects.
+const REACH = [["YouTube",84],["Facebook",71],["Instagram",50],["TikTok",37],["Reddit",26]];
+const BX = 2.35, BMAX = 5.0, BH = 0.42;
+REACH.forEach(([name, val], i) => {
+  const y = 1.95 + i * 0.86;
+  txt(s, name, { x: 0.75, y, w: 1.5, h: BH, margin: 0, fontSize: 13, color: INK, valign: "middle" });
+  s.addShape(pres.ShapeType.rect, { x: BX, y, w: BMAX, h: BH,
+    fill: { color: WASH }, line: { color: WASH }, objectName: `track-${name}` });
+  s.addShape(pres.ShapeType.rect, { x: BX, y, w: BMAX * (val / 100), h: BH,
+    fill: { color: FOREST }, line: { color: FOREST }, objectName: `bar-${name}` });
+  txt(s, val + "%", { x: BX + BMAX + 0.15, y, w: 0.8, h: BH, margin: 0,
+    fontSize: 13, bold: true, color: INK, valign: "middle" });
 });
-txt(s, "Pew Research Center, 2025", { x: 0.75, y: 6.2, w: 7.6, h: 0.3, fontSize: 10, color: MUTE });
+txt(s, "Share of U.S. adults who use each platform", { x: 0.75, y: 6.35, w: 7.6, h: 0.3,
+  fontSize: 11, color: MUTE });
+txt(s, "Pew Research Center, 2025", { x: 0.75, y: 6.62, w: 7.6, h: 0.3, fontSize: 10, color: MUTE });
 s.addShape(pres.ShapeType.roundRect, { x: 8.7, y: 1.9, w: 3.85, h: 3.5, rectRadius: 0.12,
   fill: { color: WASH }, line: { color: WASH }, objectName: "reach-note" });
 txt(s, "The two platforms with the widest reach — YouTube at 84% — are the two where Splendid Spoon has no presence at all.",
